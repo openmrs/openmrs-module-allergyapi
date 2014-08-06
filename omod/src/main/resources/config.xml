@@ -17,7 +17,7 @@
 
 	
 	<!-- Module Activator -->
-	<activator>${project.parent.groupId}.${project.parent.artifactId}.AllergyAPIActivator</activator>
+	<activator>${project.parent.groupId}.${project.parent.artifactId}.AllergyActivator</activator>
 	
 	
 	<!-- Adds link to admin page -->
@@ -28,8 +28,6 @@
 	
 	<!-- Maps hibernate file's, if present -->
 	<mappingFiles>
-				
-		BaseAllergyObject.hbm.xml
 				
 	</mappingFiles>
 

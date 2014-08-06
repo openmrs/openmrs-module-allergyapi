@@ -24,16 +24,16 @@
 	<bean parent="serviceContext">
 		<property name="moduleService">
 			<list>
-				<value>${project.parent.groupId}.${project.parent.artifactId}.api.AllergyApiService</value>
+				<value>${project.parent.groupId}.${project.parent.artifactId}.api.PatientService</value>
 				<bean
 					class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
 					<property name="transactionManager">
 						<ref bean="transactionManager" />
 					</property>
 					<property name="target">
-						<bean class="${project.parent.groupId}.${project.parent.artifactId}.api.impl.AllergyApiServiceImpl">
+						<bean class="${project.parent.groupId}.${project.parent.artifactId}.api.impl.PatientServiceImpl">
 							<property name="dao">
-								<bean class="${project.parent.groupId}.${project.parent.artifactId}.api.db.hibernate.HibernateAllergyApiDAO">
+								<bean class="${project.parent.groupId}.${project.parent.artifactId}.api.db.hibernate.HibernatePatientDAO">
 									<property name="sessionFactory">
 										<ref bean="sessionFactory" />
 									</property>

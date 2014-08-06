@@ -11,34 +11,32 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.module.allergyapi.api.impl;
+package org.openmrs.module.allergyapi.api.db.hibernate;
 
-import org.openmrs.api.impl.BaseOpenmrsService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.module.allergyapi.api.AllergyApiService;
-import org.openmrs.module.allergyapi.api.db.AllergyApiDAO;
+import org.hibernate.SessionFactory;
+import org.openmrs.module.allergyapi.api.db.PatientDAO;
 
 /**
- * It is a default implementation of {@link AllergyApiService}.
+ * It is a default implementation of  {@link PatientDAO}.
  */
-public class AllergyApiServiceImpl extends BaseOpenmrsService implements AllergyApiService {
-	
+public class HibernatePatientDAO implements PatientDAO {
 	protected final Log log = LogFactory.getLog(this.getClass());
 	
-	private AllergyApiDAO dao;
+	private SessionFactory sessionFactory;
 	
 	/**
-     * @param dao the dao to set
+     * @param sessionFactory the sessionFactory to set
      */
-    public void setDao(AllergyApiDAO dao) {
-	    this.dao = dao;
+    public void setSessionFactory(SessionFactory sessionFactory) {
+	    this.sessionFactory = sessionFactory;
     }
     
-    /**
-     * @return the dao
+	/**
+     * @return the sessionFactory
      */
-    public AllergyApiDAO getDao() {
-	    return dao;
+    public SessionFactory getSessionFactory() {
+	    return sessionFactory;
     }
 }

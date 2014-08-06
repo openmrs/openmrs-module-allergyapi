@@ -11,16 +11,21 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.module.allergyapi.api.db;
+package org.openmrs.module.allergyapi.api;
 
-import org.openmrs.module.allergyapi.api.AllergyApiService;
+import static org.junit.Assert.assertNotNull;
+
+import org.junit.Test;
+import org.openmrs.api.context.Context;
+import org.openmrs.test.BaseModuleContextSensitiveTest;
 
 /**
- *  Database methods for {@link AllergyApiService}.
+ * Tests allergy methods in {@link ${PatientService}}.
  */
-public interface AllergyApiDAO {
+public class  AllergyServiceTest extends BaseModuleContextSensitiveTest {
 	
-	/*
-	 * Add DAO methods here
-	 */
+	@Test
+	public void shouldSetupContext() {
+		assertNotNull(Context.getService(PatientService.class));
+	}
 }
