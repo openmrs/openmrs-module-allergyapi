@@ -1,12 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
- 
+
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
     <!--
-        See http://www.liquibase.org/manual/home#available_database_refactorings
-        for a list of supported elements and attributes
+        Create allergy_reaction table
     -->
-    
+    <changeSet id="RA-355-create-allergy-reaction-table" author="fbiedrzycki">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="allergy_reaction"/>
+            </not>
+            <tableExists tableName="allergy"></tableExists>
+        </preConditions>
+        <comment>Create allergy_reaction table</comment>
+        <createTable tableName="allergy_reaction">
+            <column name="allergy_reaction_id" autoIncrement="true" type="int">
+                <constraints nullable="false" unique="true" primaryKey="true"/>
+            </column>
+            <column name="allergy_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reaction_concept_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reaction_non_coded" type="varchar(255)">
+            </column>
+            <column name="uuid" type="char(38)"></column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="allergy_reaction" baseColumnNames="allergy_id"
+                                 constraintName="allergy_reaction_allergy_id_fk" referencedColumnNames="allergy_id"
+                                 referencedTableName="allergy"/>
+        <addForeignKeyConstraint baseTableName="allergy_reaction" baseColumnNames="reaction_concept_id"
+                                 constraintName="allergy_reaction_reaction_concept_id_fk" referencedColumnNames="concept_id"
+                                 referencedTableName="concept"/>
+    </changeSet>
+
 </databaseChangeLog>
