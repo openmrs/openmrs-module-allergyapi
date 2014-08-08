@@ -37,4 +37,17 @@
                                  referencedTableName="concept"/>
     </changeSet>
 
+    <changeSet id="RA-360-Add-allergy-status-to-patient" author="rpuzdrowski">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="patient"></tableExists>
+            <not>
+                <columnExists tableName="patient" columnName="allergy_status"/>
+            </not>
+        </preConditions>
+        <comment>Add allergy_status field to the patient table</comment>
+        <addColumn tableName="patient">
+            <column name="allergy_status" type="varchar(50)"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>
