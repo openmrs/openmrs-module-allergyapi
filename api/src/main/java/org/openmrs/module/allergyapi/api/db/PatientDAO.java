@@ -13,14 +13,39 @@
  */
 package org.openmrs.module.allergyapi.api.db;
 
+import java.util.List;
+
+import org.openmrs.Patient;
+import org.openmrs.module.allergyapi.Allergies;
+import org.openmrs.module.allergyapi.Allergy;
 import org.openmrs.module.allergyapi.api.PatientService;
 
 /**
- *  Database methods for {@link PatientService}.
+ * Database methods for {@link PatientService}.
  */
 public interface PatientDAO {
 	
-	/*
-	 * Add DAO methods here
+	/**
+	 * Gets a list of allergies that a patient has
+	 * 
+	 * @param patient the patient
+	 * @return the allergy list
 	 */
+	List<Allergy> getAllergies(Patient patient);
+	
+	/**
+	 * Gets a patient's allergy status
+	 * 
+	 * @param patient the patient
+	 * @return the allergy status
+	 */
+	String getAllergyStatus(Patient patient);
+	
+	/**
+	 * Saves patient allergies to the database.
+	 * 
+	 * @param patient the patient
+	 * @param allergies the allergies
+	 */
+	void saveAllergies(Patient patient, Allergies allergies);
 }

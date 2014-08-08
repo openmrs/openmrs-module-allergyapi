@@ -18,7 +18,6 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.Patient;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.allergyapi.Allergies;
-import org.openmrs.module.allergyapi.Allergy;
 import org.openmrs.module.allergyapi.api.PatientService;
 import org.openmrs.module.allergyapi.api.db.PatientDAO;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,36 +52,17 @@ public class PatientServiceImpl extends BaseOpenmrsService implements PatientSer
 	@Override
 	@Transactional(readOnly = true)
 	public Allergies getAllergies(Patient patient) {
-		// TODO Auto-generated method stub
-		return null;
+		Allergies allergies = new Allergies();
+		return allergies;
 	}
 	
 	/**
-	 * @see org.openmrs.module.allergyapi.api.PatientService#confirmNoKnownAllergies(org.openmrs.Patient)
+	 * @see org.openmrs.module.allergyapi.api.PatientService#setAllergies(org.openmrs.Patient,
+	 *      org.openmrs.module.allergyapi.Allergies)
 	 */
 	@Override
-	public void confirmNoKnownAllergies(Patient patient) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	/**
-	 * @see org.openmrs.module.allergyapi.api.PatientService#addAllergy(org.openmrs.Patient,
-	 *      org.openmrs.activelist.Allergy)
-	 */
-	@Override
-	public void addAllergy(Patient patient, Allergy allergy) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	/**
-	 * @see org.openmrs.module.allergyapi.api.PatientService#removeAllergy(org.openmrs.Patient,
-	 *      org.openmrs.activelist.Allergy)
-	 */
-	@Override
-	public void removeAllergy(Patient patient, Allergy allergy) {
-		// TODO Auto-generated method stub
-		
+	public Allergies setAllergies(Patient patient, Allergies allergies) {
+		dao.saveAllergies(patient, allergies);
+		return allergies;
 	}
 }

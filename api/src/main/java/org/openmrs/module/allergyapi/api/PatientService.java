@@ -16,7 +16,6 @@ package org.openmrs.module.allergyapi.api;
 import org.openmrs.Patient;
 import org.openmrs.api.OpenmrsService;
 import org.openmrs.module.allergyapi.Allergies;
-import org.openmrs.module.allergyapi.Allergy;
 
 /**
  * This service exposes module's core functionality. It is a Spring managed bean which is configured
@@ -38,27 +37,13 @@ public interface PatientService extends OpenmrsService {
 	 * @return the allergies object
 	 */
 	Allergies getAllergies(Patient patient);
-	
+
 	/**
-	 * Confirms that a patient does not have any known allergies
+	 * Updates the patient's allergies
 	 * 
 	 * @param patient the patient
+	 * @param newAllergies the allergies
+	 * @return
 	 */
-	void confirmNoKnownAllergies(Patient patient);
-	
-	/**
-	 * Adds a new patient allergy
-	 * 
-	 * @param patient the patient
-	 * @param allergy the allergy
-	 */
-	void addAllergy(Patient patient, Allergy allergy);
-	
-	/**
-	 * Removes a patient allergy
-	 * 
-	 * @param patient the patient
-	 * @param allergy the allergy
-	 */
-	void removeAllergy(Patient patient, Allergy allergy);
+	Allergies setAllergies(Patient patient, Allergies newAllergies);
 }
