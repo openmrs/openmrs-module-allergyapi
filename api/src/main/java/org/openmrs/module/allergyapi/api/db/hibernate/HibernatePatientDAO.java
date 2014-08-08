@@ -70,7 +70,6 @@ public class HibernatePatientDAO implements PatientDAO {
 	@Override
 	public String getAllergyStatus(Patient patient) throws APIException {
 		Connection connection = sessionFactory.getCurrentSession().connection();
-		
 		try {
 			PreparedStatement ps = connection.prepareStatement("SELECT allergy_status FROM patient WHERE patient_id = ?");
 			ps.setInt(1, patient.getPatientId());
@@ -88,9 +87,8 @@ public class HibernatePatientDAO implements PatientDAO {
 	 *      org.openmrs.module.allergyapi.Allergies)
 	 */
 	@Override
-	public void saveAllergies(Patient patient, Allergies allergies) {
+	public Allergies saveAllergies(Patient patient, Allergies allergies) {
 		Connection connection = sessionFactory.getCurrentSession().connection();
-		
 		try {
 			PreparedStatement ps = connection.prepareStatement("UPDATE patient SET allergy_status = ? WHERE patient_id = ?");
 			ps.setString(1, allergies.getAllergyStatus());
@@ -100,6 +98,7 @@ public class HibernatePatientDAO implements PatientDAO {
 			for (Allergy allergy : allergies) {
 				sessionFactory.getCurrentSession().save(allergy);
 			}
+			return allergies;
 		}
 		catch (SQLException e) {
 			throw new APIException("Error while trying to save patient allergies", e);

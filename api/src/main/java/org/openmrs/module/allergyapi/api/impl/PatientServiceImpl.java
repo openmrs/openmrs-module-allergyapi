@@ -13,11 +13,14 @@
  */
 package org.openmrs.module.allergyapi.api.impl;
 
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Patient;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.allergyapi.Allergies;
+import org.openmrs.module.allergyapi.Allergy;
 import org.openmrs.module.allergyapi.api.PatientService;
 import org.openmrs.module.allergyapi.api.db.PatientDAO;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,6 +56,15 @@ public class PatientServiceImpl extends BaseOpenmrsService implements PatientSer
 	@Transactional(readOnly = true)
 	public Allergies getAllergies(Patient patient) {
 		Allergies allergies = new Allergies();
+		List<Allergy> allergyList = dao.getAllergies(patient);
+		if (allergyList.size() > 0) {
+			allergies.addAll(allergyList);
+		} else {
+			String status = dao.getAllergyStatus(patient);
+			if (Allergies.NO_KNOWN_ALLERGIES.equals(status)) {
+				allergies.confirmNoKnownAllergies();
+			}
+		}
 		return allergies;
 	}
 	
@@ -62,7 +74,6 @@ public class PatientServiceImpl extends BaseOpenmrsService implements PatientSer
 	 */
 	@Override
 	public Allergies setAllergies(Patient patient, Allergies allergies) {
-		dao.saveAllergies(patient, allergies);
-		return allergies;
+		return dao.saveAllergies(patient, allergies);
 	}
 }
