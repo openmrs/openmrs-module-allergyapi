@@ -46,7 +46,7 @@ public interface PatientDAO {
 	 * 
 	 * @param patient the patient
 	 * @param allergies the allergies
-	 * @return the saves allergies
+	 * @return the saved allergies
 	 */
 	Allergies saveAllergies(Patient patient, Allergies allergies);
 }

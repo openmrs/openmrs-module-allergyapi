@@ -15,6 +15,7 @@ package org.openmrs.module.allergyapi.api;
 
 import static org.junit.Assert.assertNotNull;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.openmrs.api.context.Context;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
@@ -23,6 +24,18 @@ import org.openmrs.test.BaseModuleContextSensitiveTest;
  * Tests allergy methods in {@link ${PatientService}}.
  */
 public class  AllergyServiceTest extends BaseModuleContextSensitiveTest {
+	
+	private static final String ALLERGY_TEST_DATASET = "allergyTestDataset.xml";
+
+	private PatientService patientService;
+	
+	@Before
+	public void runBeforeAllTests() throws Exception {
+		if (patientService == null) {
+			patientService = Context.getService(PatientService.class);
+		}
+		executeDataSet(ALLERGY_TEST_DATASET);
+	}
 	
 	@Test
 	public void shouldSetupContext() {

@@ -35,15 +35,19 @@ public interface PatientService extends OpenmrsService {
 	 * 
 	 * @param patient the patient
 	 * @return the allergies object
+	 * @should get the allergy list
+	 * @should get the patient allergy status
 	 */
 	Allergies getAllergies(Patient patient);
-
+	
 	/**
 	 * Updates the patient's allergies
 	 * 
 	 * @param patient the patient
 	 * @param newAllergies the allergies
-	 * @return
+	 * @return the saved allergies
+	 * @should save the patient allergy status
+	 * @should save the allergy list
 	 */
 	Allergies setAllergies(Patient patient, Allergies newAllergies);
 }

@@ -68,14 +68,14 @@ public class HibernatePatientDAO implements PatientDAO {
 	 * @see org.openmrs.module.allergyapi.api.db.PatientDAO#getAllergyStatus(org.openmrs.Patient)
 	 */
 	@Override
-	public String getAllergyStatus(Patient patient) throws APIException {
+	public String getAllergyStatus(Patient patient) {
 		Connection connection = sessionFactory.getCurrentSession().connection();
 		try {
 			PreparedStatement ps = connection.prepareStatement("SELECT allergy_status FROM patient WHERE patient_id = ?");
 			ps.setInt(1, patient.getPatientId());
 			ResultSet rs = ps.executeQuery();
 			rs.next();
-			return rs.getString(0);
+			return rs.getString(1);
 		}
 		catch (SQLException e) {
 			throw new APIException("Error while trying to get the patient allergy status", e);
