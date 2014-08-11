@@ -8,21 +8,19 @@
     <class name="Allergy" table="allergy">
 
         <id name="allergyId" type="int" column="allergy_id">
+            <generator class="native"/>
         </id>
-        <property name="patient" type="org.openmrs.Patient" column="patient_id" not-null="true"/>
-        <property name="allergen" type="org.openmrs.module.allergyapi.Allergen" column="allergen_id" not-null="true"/>
-        <property name="severity" type="org.openmrs.Concept" column="severity_concept_id" not-null="true"/>
-        <property name="comment" type="java.lang.String" column="comment"/>
-        <property name="creator" type="org.openmrs.User" column="creator" not-null="true"/>
+        <discriminator column="allergy_id" insert="false"/>
+        <many-to-one name="patient" column="patient_id" class="org.openmrs.Patient" not-null="true"/>
+        <many-to-one name="allergen" column="allergen_id" class="org.openmrs.module.allergyapi.Allergen" not-null="true"/>
+        <many-to-one name="severity" column="severity_concept_id" class="org.openmrs.Concept" not-null="true"/>
+        <property name="comment" column="comment" type="java.lang.String" length="1024"/>
+        <many-to-one name="creator" column="creator" class="org.openmrs.User" not-null="true"/>
         <property name="dateCreated" type="java.util.Date" column="date_created" not-null="true"/>
-        <property name="voided" type="java.lang.Boolean" column="voided"
-                  length="1" not-null="true"/>
-        <property name="dateVoided" type="java.util.Date"
-                  column="date_voided" length="19"/>
-        <property name="voidReason" type="java.lang.String"
-                  column="void_reason" length="255"/>
-        <many-to-one name="voidedBy" column="voided_by"/>
+        <property name="voided" type="java.lang.Boolean" column="voided" length="1" not-null="true"/>
+        <property name="dateVoided" type="java.util.Date" column="date_voided" length="19"/>
+        <property name="voidReason" type="java.lang.String" column="void_reason" length="255"/>
+        <many-to-one name="voidedBy" column="voided_by" class="org.openmrs.User"/>
         <property name="uuid" type="java.lang.String" column="uuid" length="38" unique="true"/>
     </class>
-
 </hibernate-mapping>
