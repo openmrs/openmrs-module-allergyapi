@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-	<allergy allergy_id="1" concept_id="18" severity_concept_id="23" retired="0" creator="1" date_created="2004-08-12 00:00:00.0" uuid="21543629-7d8c-11e1-909d-c80aa9edcf4e"/>
-    <allergy allergy_id="2" concept_id="18" severity_concept_id="23" retired="0" creator="1" date_created="2004-08-12 00:00:00.0" uuid="35543629-7d8c-11e1-909d-c80aa9edcf4e"/>
-    <allergy allergy_id="3" concept_id="18" severity_concept_id="23" retired="0" creator="1" date_created="2004-08-12 00:00:00.0" uuid="4b9d9421-7d8c-11e1-909d-c80aa9edcf4e"/>
-    <allergy allergy_id="4" concept_id="18" severity_concept_id="23" retired="0" creator="1" date_created="2004-08-12 00:00:00.0" uuid="43ac5109-7d8c-11e1-909d-c80aa9edcf4e"/>
+	<allergy allergy_id="1" coded_allergen="88" patient_id="8" allergen_type="drug" severity_concept_id="23" voided="0" creator="1" date_created="2004-08-12 00:00:00.0" uuid="21543629-7d8c-11e1-909d-c80aa9edcf4e"/>
+    <allergy allergy_id="2" coded_allergen="88" patient_id="8" allergen_type="drug" severity_concept_id="23" voided="0" creator="1" date_created="2004-08-12 00:00:00.0" uuid="35543629-7d8c-11e1-909d-c80aa9edcf4e"/>
+    <allergy allergy_id="3" coded_allergen="88" patient_id="8" allergen_type="drug" severity_concept_id="23" voided="0" creator="1" date_created="2004-08-12 00:00:00.0" uuid="4b9d9421-7d8c-11e1-909d-c80aa9edcf4e"/>
+    <allergy allergy_id="4" coded_allergen="88" patient_id="8" allergen_type="drug" severity_concept_id="23" voided="0" creator="1" date_created="2004-08-12 00:00:00.0" uuid="43ac5109-7d8c-11e1-909d-c80aa9edcf4e"/>
 </dataset>

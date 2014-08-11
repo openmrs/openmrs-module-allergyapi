@@ -22,9 +22,9 @@ public class Allergen {
 	
 	private AllergenType allergenType;
 	
-	private Concept concept;
+	private Concept codedAllergen;
 	
-	private String nonCodedConcept;
+	private String nonCodedAllergen;
 	
 	/**
 	 * Default constructor
@@ -34,13 +34,13 @@ public class Allergen {
 	
 	/**
 	 * @param allergenType the allergenType to set
-	 * @param concept the concept to set
-	 * @param nonCodedConcept the nonCodedConcept to set
+	 * @param codedAllergen the codedAllergen to set
+	 * @param nonCodedAllergen the nonCodedAllergen to set
 	 */
-	public Allergen(AllergenType allergenType, Concept concept, String nonCodedConcept) {
+	public Allergen(AllergenType allergenType, Concept codedAllergen, String nonCodedAllergen) {
 		this.allergenType = allergenType;
-		this.concept = concept;
-		this.nonCodedConcept = nonCodedConcept;
+		this.codedAllergen = codedAllergen;
+		this.nonCodedAllergen = nonCodedAllergen;
 	}
 	
 	/**
@@ -57,35 +57,35 @@ public class Allergen {
 		this.allergenType = allergenType;
 	}
 	
-	/**
-	 * @return Returns the concept
-	 */
-	public Concept getConcept() {
-		return concept;
-	}
+    /**
+     * @return the codedAllergen
+     */
+    public Concept getCodedAllergen() {
+    	return codedAllergen;
+    }
+
+    /**
+     * @param codedAllergen the codedAllergen to set
+     */
+    public void setCodedAllergen(Concept codedAllergen) {
+    	this.codedAllergen = codedAllergen;
+    }
 	
-	/**
-	 * @param concept the concept to set
-	 */
-	public void setConcept(Concept concept) {
-		this.concept = concept;
-	}
-	
-	/**
-	 * @return Returns the nonCodedConcept
-	 */
-	public String getAllergenNonCoded() {
-		return nonCodedConcept;
-	}
-	
-	/**
-	 * @param nonCodedConcept the nonCodedConcept to set
-	 */
-	public void setAllergenNonCoded(String nonCodedConcept) {
-		this.nonCodedConcept = nonCodedConcept;
-	}
-	
+    /**
+     * @return the nonCodedAllergen
+     */
+    public String getNonCodedAllergen() {
+    	return nonCodedAllergen;
+    }
+
+    /**
+     * @param nonCodedAllergen the nonCodedAllergen to set
+     */
+    public void setNonCodedAllergen(String nonCodedAllergen) {
+    	this.nonCodedAllergen = nonCodedAllergen;
+    }
+
 	boolean isCoded(){
-		return concept != null;
+		return codedAllergen != null;
 	}
 }

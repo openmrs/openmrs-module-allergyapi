@@ -59,6 +59,20 @@ public class Allergy extends BaseOpenmrsData implements java.io.Serializable {
 		this.reactions = reactions;
 	}
 	
+    /**
+     * @return the allergyId
+     */
+    public Integer getAllergyId() {
+    	return allergyId;
+    }
+
+    /**
+     * @param allergyId the allergyId to set
+     */
+    public void setAllergyId(Integer allergyId) {
+    	this.allergyId = allergyId;
+    }
+
 	/**
 	 * @see org.openmrs.OpenmrsObject#getId()
 	 */
