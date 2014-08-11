@@ -28,7 +28,7 @@
 	
 	<!-- Maps hibernate file's, if present -->
 	<mappingFiles>
-				
+		Allergy.hbm.xml
 	</mappingFiles>
 
 	<!-- Internationalization -->

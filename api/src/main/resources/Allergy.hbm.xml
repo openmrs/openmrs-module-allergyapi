@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.1//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="org.openmrs.module.allergyapi">
+
+    <class name="Allergy" table="allergy">
+
+        <id name="allergyId" type="int" column="allergy_id">
+            <generator class="native"/>
+        </id>
+        <discriminator column="allergy_id" insert="false"/>
+        <many-to-one name="patient" column="patient_id" class="org.openmrs.Patient" not-null="true"/>
+        <many-to-one name="allergen" column="allergen_id" class="org.openmrs.module.allergyapi.Allergen" not-null="true"/>
+        <many-to-one name="severity" column="severity_concept_id" class="org.openmrs.Concept" not-null="true"/>
+        <property name="comment" column="comment" type="java.lang.String" length="1024"/>
+        <many-to-one name="creator" column="creator" class="org.openmrs.User" not-null="true"/>
+        <property name="dateCreated" type="java.util.Date" column="date_created" not-null="true"/>
+        <property name="voided" type="java.lang.Boolean" column="voided" length="1" not-null="true"/>
+        <property name="dateVoided" type="java.util.Date" column="date_voided" length="19"/>
+        <property name="voidReason" type="java.lang.String" column="void_reason" length="255"/>
+        <many-to-one name="voidedBy" column="voided_by" class="org.openmrs.User"/>
+        <property name="uuid" type="java.lang.String" column="uuid" length="38" unique="true"/>
+    </class>
+</hibernate-mapping>
