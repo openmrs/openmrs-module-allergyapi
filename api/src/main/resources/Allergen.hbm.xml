@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.1//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="org.openmrs.module.allergyapi" auto-import="false">
+
+    <class name="Allergen" table="allergen">
+        <id name="allergenId" type="int" column="allergen_id">
+            <generator class="native"/>
+        </id>
+        <discriminator column="allergen_id" insert="false"/>
+        <property name="allergenType" column="allergen_type" type="org.openmrs.module.allergyapi.AllergenType" not-null="true" length="50"/>
+        <property name="codedAllergen" column="concept_id" type="org.openmrs.Concept" not-null="true"/>
+        <property name="nonCodedAllergen" column="allergen_non_coded" type="java.lang.String" length="255"/>
+    </class>
+</hibernate-mapping>

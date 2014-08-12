@@ -4,7 +4,6 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 
 <hibernate-mapping package="org.openmrs.module.allergyapi" auto-import="false">
-
     <class name="Allergy" table="allergy">
         <id name="allergyId" type="int" column="allergy_id">
             <generator class="native"/>
@@ -22,6 +21,11 @@
     	</component>
         <many-to-one name="severity" column="severity_concept_id" class="org.openmrs.Concept" not-null="true"/>
         <property name="comment" column="comment" type="java.lang.String" length="1024"/>
+        <list name="reactions" cascade="all">
+            <key column="allergy_id"/>
+            <list-index column="allergy_reaction_id"/>
+            <one-to-many class="org.openmrs.module.allergyapi.AllergyReaction"/>
+        </list>
         <many-to-one name="creator" column="creator" class="org.openmrs.User" not-null="true"/>
         <property name="dateCreated" type="java.util.Date" column="date_created" not-null="true"/>
         <property name="voided" type="java.lang.Boolean" column="voided" length="1" not-null="true"/>
