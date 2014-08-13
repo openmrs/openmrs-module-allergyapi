@@ -5,38 +5,13 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
     <!--
-        Create allergy and allergen table
+        Create allergy table
     -->
-    <changeSet id="create-allergen-table" author="fbiedrzycki">
-        <preConditions>
-            <not>
-                <tableExists tableName="allergen"/>
-            </not>
-        </preConditions>
-        <comment>Create allergen table</comment>
-        <createTable tableName="allergen">
-            <column name="allergen_id" autoIncrement="true" type="int">
-                <constraints nullable="false" unique="true" primaryKey="true"/>
-            </column>
-            <column name="concept_id" type="int">
-                <constraints nullable="false"/>
-            </column>
-            <column name="allergen_non_coded" type="varchar(255)">
-            </column>
-            <column name="allergen_type" type="varchar(50)">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-        <addForeignKeyConstraint baseTableName="allergen" baseColumnNames="concept_id"
-                                 constraintName="allergen_concept_id_fk" referencedColumnNames="concept_id"
-                                 referencedTableName="concept"/>
-    </changeSet>
     <changeSet id="RA-354-create-allergy-table" author="fbiedrzycki">
         <preConditions onFail="MARK_RAN">
             <not>
                 <tableExists tableName="allergy"/>
             </not>
-            <tableExists tableName="allergen"/>
         </preConditions>
         <comment>Create allergy table</comment>
         <createTable tableName="allergy">
@@ -49,7 +24,13 @@
             <column name="severity_concept_id" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column name="allergen_id" type="int"></column>
+            <column name="coded_allergen" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="non_coded_allergen" type="varchar(255)">
+            </column>
+            <column name="allergen_type" type="varchar(50)">
+            <constraints nullable="false"/></column>
             <column name="comment" type="varchar(1024)"></column>
             <column name="creator" type="int">
                 <constraints nullable="false"/>
@@ -57,19 +38,20 @@
             <column name="date_created" type="datetime">
                 <constraints nullable="false"/>
             </column>
-            <column name="voided" type="tinyint"></column>
+            <column name="voided" type="tinyint" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
             <column name="voided_by" type="int"></column>
             <column name="date_voided" type="datetime"></column>
             <column name="void_reason" type="varchar(255)"></column>
             <column name="uuid" type="char(38)"></column>
         </createTable>
-        <addForeignKeyConstraint baseTableName="allergy" baseColumnNames="allergen_id"
-                                 constraintName="allergy_allergen_id_fk" referencedTableName="allergen"
-                                 referencedColumnNames="allergen_id"/>
         <addForeignKeyConstraint baseTableName="allergy" baseColumnNames="patient_id"
                                  constraintName="allergy_patient_id_fk" referencedColumnNames="patient_id"
                                  referencedTableName="patient"/>
-
+        <addForeignKeyConstraint baseTableName="allergy" baseColumnNames="coded_allergen"
+                                 constraintName="allergy_coded_allergen_fk" referencedColumnNames="concept_id"
+                                 referencedTableName="concept"/>
         <addForeignKeyConstraint baseTableName="allergy" baseColumnNames="severity_concept_id"
                                  constraintName="allergy_severity_concept_id_fk" referencedColumnNames="concept_id"
                                  referencedTableName="concept"/>
@@ -79,9 +61,9 @@
                                  constraintName="allergy_voided_by_fk" referencedColumnNames="user_id"
                                  referencedTableName="users"/>
     </changeSet>
-<!--
-        Create allergy_reaction table
-    -->
+    <!--
+            Create allergy_reaction table
+        -->
     <changeSet id="RA-355-create-allergy-reaction-table" author="fbiedrzycki">
         <preConditions onFail="MARK_RAN">
             <not>
@@ -108,7 +90,8 @@
                                  constraintName="allergy_reaction_allergy_id_fk" referencedColumnNames="allergy_id"
                                  referencedTableName="allergy"/>
         <addForeignKeyConstraint baseTableName="allergy_reaction" baseColumnNames="reaction_concept_id"
-                                 constraintName="allergy_reaction_reaction_concept_id_fk" referencedColumnNames="concept_id"
+                                 constraintName="allergy_reaction_reaction_concept_id_fk"
+                                 referencedColumnNames="concept_id"
                                  referencedTableName="concept"/>
     </changeSet>
 
