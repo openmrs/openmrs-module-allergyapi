@@ -26,11 +26,11 @@ import org.openmrs.api.APIException;
  */
 public class Allergies implements List<Allergy> {
 	
-	public static final String UNKNOWN = "unknown";
+	public static final String UNKNOWN = "UNKNOWN";
 	
-	public static final String NO_KNOWN_ALLERGIES = "no known allergies";
+	public static final String NO_KNOWN_ALLERGIES = "NO_KNOWN_ALLERGIES";
 	
-	public static final String SEE_LIST = "see list";
+	public static final String SEE_LIST = "SEE_LIST";
 	
 	private String allergyStatus = UNKNOWN;
 	

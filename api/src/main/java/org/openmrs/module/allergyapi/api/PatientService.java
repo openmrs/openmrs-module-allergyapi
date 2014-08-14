@@ -35,8 +35,7 @@ public interface PatientService extends OpenmrsService {
 	 * 
 	 * @param patient the patient
 	 * @return the allergies object
-	 * @should get the allergy list
-	 * @should get the patient allergy status
+	 * @should get the allergy list and status
 	 */
 	Allergies getAllergies(Patient patient);
 	
@@ -44,10 +43,12 @@ public interface PatientService extends OpenmrsService {
 	 * Updates the patient's allergies
 	 * 
 	 * @param patient the patient
-	 * @param newAllergies the allergies
+	 * @param allergies the allergies
 	 * @return the saved allergies
-	 * @should save the patient allergy status
-	 * @should save the allergy list
+	 * @should save the allergy list and status
+	 * @should void removed allergies and maintain status as see list if some allergies are removed
+	 * @should void all allergies and set status to unknown if all allergies are removed
+	 * @should void all allergies and set status to no known allergies if all allergies are removed and status set as such
 	 */
-	Allergies setAllergies(Patient patient, Allergies newAllergies);
+	Allergies setAllergies(Patient patient, Allergies allergies);
 }

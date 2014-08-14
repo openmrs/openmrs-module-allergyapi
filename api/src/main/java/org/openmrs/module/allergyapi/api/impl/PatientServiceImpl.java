@@ -18,6 +18,7 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Patient;
+import org.openmrs.api.context.Context;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.allergyapi.Allergies;
 import org.openmrs.module.allergyapi.Allergy;
@@ -74,6 +75,19 @@ public class PatientServiceImpl extends BaseOpenmrsService implements PatientSer
 	 */
 	@Override
 	public Allergies setAllergies(Patient patient, Allergies allergies) {
+		//void any allergies that have been removed
+		List<Allergy> allergyList = getAllergies(patient);
+		for (Allergy allergy : allergyList) {
+			if (allergies.contains(allergy)) {
+				continue;
+			}
+			
+			allergy.setVoided(true);
+			allergy.setVoidedBy(Context.getAuthenticatedUser());
+			allergy.setVoidReason("Voided by API");
+			dao.saveAllergy(allergy);
+		}
+		
 		return dao.saveAllergies(patient, allergies);
 	}
 }

@@ -49,4 +49,12 @@ public interface PatientDAO {
 	 * @return the saved allergies
 	 */
 	Allergies saveAllergies(Patient patient, Allergies allergies);
+	
+	/**
+	 * Saves an allergy to the database
+	 * 
+	 * @param allergy the allergy to save
+	 * @return the saved allergy
+	 */
+	Allergy saveAllergy(Allergy allergy);
 }

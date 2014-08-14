@@ -98,10 +98,20 @@ public class HibernatePatientDAO implements PatientDAO {
 			for (Allergy allergy : allergies) {
 				sessionFactory.getCurrentSession().save(allergy);
 			}
+				
 			return allergies;
 		}
 		catch (SQLException e) {
 			throw new APIException("Error while trying to save patient allergies", e);
 		}
 	}
+
+	/**
+     * @see org.openmrs.module.allergyapi.api.db.PatientDAO#saveAllergy(org.openmrs.module.allergyapi.Allergy)
+     */
+    @Override
+    public Allergy saveAllergy(Allergy allergy) {
+    	sessionFactory.getCurrentSession().save(allergy);
+    	return allergy;
+    }
 }
