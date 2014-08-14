@@ -12,16 +12,22 @@
         <discriminator column="allergy_id" insert="false"/>
         <many-to-one name="patient" column="patient_id" class="org.openmrs.Patient" not-null="true"/>
         <component name="allergen" class="org.openmrs.module.allergyapi.Allergen">
-        	<property name="allergenType" column="allergen_type" length="50" not-null="true">
-	            <type name="org.openmrs.util.HibernateEnumType">
-	                <param name="enumClassName">org.openmrs.module.allergyapi.AllergenType</param>
-	            </type>
-        	</property>
-	        <many-to-one name="codedAllergen" column="coded_allergen" class="org.openmrs.Concept" not-null="true"/>
-	        <property name="nonCodedAllergen" type="java.lang.String" column="non_coded_allergen" length="255"/>
-    	</component>
+            <property name="allergenType" column="allergen_type" length="50" not-null="true">
+                <type name="org.openmrs.util.HibernateEnumType">
+                    <param name="enumClassName">org.openmrs.module.allergyapi.AllergenType</param>
+                </type>
+            </property>
+            <many-to-one name="codedAllergen" column="coded_allergen" class="org.openmrs.Concept" not-null="true"/>
+            <property name="nonCodedAllergen" type="java.lang.String" column="non_coded_allergen" length="255"/>
+        </component>
         <many-to-one name="severity" column="severity_concept_id" class="org.openmrs.Concept" not-null="true"/>
         <property name="comment" column="comment" type="java.lang.String" length="1024"/>
+        <bag name="reactions" table="allergy_reaction">
+            <key>
+                <column name="allergy_id" not-null="true"/>
+            </key>
+            <one-to-many class="AllergyReaction"/>
+        </bag>
         <many-to-one name="creator" column="creator" class="org.openmrs.User" not-null="true"/>
         <property name="dateCreated" type="java.util.Date" column="date_created" not-null="true"/>
         <property name="voided" type="java.lang.Boolean" column="voided" length="1" not-null="true"/>
