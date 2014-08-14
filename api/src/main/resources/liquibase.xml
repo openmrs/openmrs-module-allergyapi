@@ -38,6 +38,8 @@
             <column name="date_created" type="datetime">
                 <constraints nullable="false"/>
             </column>
+            <column name="changed_by" type="int"/>
+            <column name="date_changed" type="datetime"/>
             <column name="voided" type="tinyint" defaultValue="0">
                 <constraints nullable="false"/>
             </column>
@@ -56,6 +58,8 @@
                                  constraintName="allergy_severity_concept_id_fk" referencedColumnNames="concept_id"
                                  referencedTableName="concept"/>
         <addForeignKeyConstraint baseTableName="allergy" baseColumnNames="creator" constraintName="allergy_creator_fk"
+                                 referencedColumnNames="user_id" referencedTableName="users"/>
+        <addForeignKeyConstraint baseTableName="allergy" baseColumnNames="changed_by" constraintName="allergy_changed_by_fk"
                                  referencedColumnNames="user_id" referencedTableName="users"/>
         <addForeignKeyConstraint baseTableName="allergy" baseColumnNames="voided_by"
                                  constraintName="allergy_voided_by_fk" referencedColumnNames="user_id"
