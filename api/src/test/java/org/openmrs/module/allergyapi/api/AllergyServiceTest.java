@@ -134,7 +134,7 @@ public class AllergyServiceTest extends BaseModuleContextSensitiveTest {
 		
 		allergyService.setAllergies(patient, allergies);
 		
-		//should remain with two un voided allergies and status maintained as see list
+		//should remain with three un voided allergies and status maintained as see list
 		allergies = allergyService.getAllergies(patient);
 		Assert.assertEquals(Allergies.SEE_LIST, allergies.getAllergyStatus());
 		Assert.assertEquals(3, allergies.size());
