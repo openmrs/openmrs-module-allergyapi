@@ -36,6 +36,7 @@ public class AllergyReaction extends BaseOpenmrsObject implements java.io.Serial
 	 * Default constructor
 	 */
 	public AllergyReaction(){
+		
 	}
 	
 	/**
@@ -48,6 +49,7 @@ public class AllergyReaction extends BaseOpenmrsObject implements java.io.Serial
 		this.reaction = reaction;
 		this.reactionNonCoded = reactionNonCoded;
 	}
+	
 	public Integer getAllergyReactionId() {
 		return allergyReactionId;
 	}

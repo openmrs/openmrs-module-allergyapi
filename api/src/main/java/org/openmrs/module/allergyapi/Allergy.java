@@ -162,7 +162,7 @@ public class Allergy extends BaseOpenmrsData implements java.io.Serializable {
 	 * Adds a new allergy reaction
 	 * 
 	 * @param reaction the reaction to add
-	 * @return true if the reaction was added, esle false
+	 * @return true if the reaction was added, else false
 	 */
 	public boolean addReaction(AllergyReaction reaction) {
 		reaction.setAllergy(this);

@@ -122,17 +122,25 @@ public class AllergyServiceTest extends BaseModuleContextSensitiveTest {
 		Assert.assertEquals(Allergies.SEE_LIST, allergies.getAllergyStatus());
 		Assert.assertEquals(4, allergies.size());
 		
-		//remove some three allergies
+		//remove one allergy
 		allergies.remove(0);
-		allergies.remove(0);
-		allergies.remove(0);
+		
+		//remove one reaction out of the two
+		allergies.get(0).getReactions().remove(0);
+		
+		//add a reaction to the third allergy
+		AllergyReaction reaction = new AllergyReaction(null, new Concept(22), null);
+		allergies.get(2).addReaction(reaction);
 		
 		allergyService.setAllergies(patient, allergies);
 		
-		//should remain with one un voided allergy and status maintained as see list
+		//should remain with two un voided allergies and status maintained as see list
 		allergies = allergyService.getAllergies(patient);
 		Assert.assertEquals(Allergies.SEE_LIST, allergies.getAllergyStatus());
-		Assert.assertEquals(1, allergies.size());
+		Assert.assertEquals(3, allergies.size());
+		Assert.assertEquals(1, allergies.get(0).getReactions().size());
+		Assert.assertEquals(0, allergies.get(1).getReactions().size());
+		Assert.assertEquals(1, allergies.get(2).getReactions().size());
 	}
 	
 	/**
