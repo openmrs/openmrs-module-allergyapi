@@ -29,6 +29,7 @@
 	<!-- Maps hibernate file's, if present -->
 	<mappingFiles>
 		Allergy.hbm.xml
+		AllergyReaction.hbm.xml
 	</mappingFiles>
 
 	<!-- Internationalization -->
