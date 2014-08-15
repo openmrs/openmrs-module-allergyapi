@@ -13,6 +13,8 @@
  */
 package org.openmrs.module.allergyapi.api;
 
+import java.util.ArrayList;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,6 +25,7 @@ import org.openmrs.module.allergyapi.Allergen;
 import org.openmrs.module.allergyapi.AllergenType;
 import org.openmrs.module.allergyapi.Allergies;
 import org.openmrs.module.allergyapi.Allergy;
+import org.openmrs.module.allergyapi.AllergyReaction;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 
 /**
@@ -63,6 +66,12 @@ public class AllergyServiceTest extends BaseModuleContextSensitiveTest {
 		Assert.assertEquals(Allergies.SEE_LIST, allergies.getAllergyStatus());
 		Assert.assertEquals(4, allergies.size());
 		
+		//should properly load reactions
+		Assert.assertEquals(2, allergies.get(0).getReactions().size());
+		Assert.assertEquals(2, allergies.get(1).getReactions().size());
+		Assert.assertEquals(0, allergies.get(2).getReactions().size());
+		Assert.assertEquals(0, allergies.get(3).getReactions().size());
+		
 		//get a patient without allergies
 		patient = Context.getPatientService().getPatient(6);
 		allergies = allergyService.getAllergies(patient);
@@ -85,7 +94,9 @@ public class AllergyServiceTest extends BaseModuleContextSensitiveTest {
 		//save some allergies for this patient
 		Allergen allergen = new Allergen(AllergenType.DRUG, new Concept(3), null);
 		Concept severity = new Concept(4);
-		Allergy allergy = new Allergy(patient, allergen, severity, "some comment", null);
+		Allergy allergy = new Allergy(patient, allergen, severity, "some comment", new ArrayList<AllergyReaction>());
+		AllergyReaction reaction = new AllergyReaction(allergy, new Concept(21), null);
+		allergy.addReaction(reaction);
 		allergies = new Allergies();
 		allergies.add(allergy);
 		allergyService.setAllergies(patient, allergies);
@@ -94,6 +105,7 @@ public class AllergyServiceTest extends BaseModuleContextSensitiveTest {
 		allergies = allergyService.getAllergies(patient);
 		Assert.assertEquals(Allergies.SEE_LIST, allergies.getAllergyStatus());
 		Assert.assertEquals(1, allergies.size());
+		Assert.assertEquals(1, allergies.get(0).getReactions().size());
 	}
 	
 	/**

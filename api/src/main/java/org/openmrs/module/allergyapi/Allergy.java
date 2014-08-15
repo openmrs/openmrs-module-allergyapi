@@ -13,11 +13,12 @@
  */
 package org.openmrs.module.allergyapi;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.openmrs.BaseOpenmrsData;
 import org.openmrs.Concept;
 import org.openmrs.Patient;
-
-import java.util.List;
 
 /**
  * Represent allergy
@@ -36,7 +37,7 @@ public class Allergy extends BaseOpenmrsData implements java.io.Serializable {
 	
 	private String comment;
 	
-	private List<AllergyReaction> reactions;
+	private List<AllergyReaction> reactions = new ArrayList<AllergyReaction>();
 	
 	/**
 	 * Default constructor
@@ -157,4 +158,24 @@ public class Allergy extends BaseOpenmrsData implements java.io.Serializable {
 		this.reactions = reactions;
 	}
 
+	/**
+	 * Adds a new allergy reaction
+	 * 
+	 * @param reaction the reaction to add
+	 * @return true if the reaction was added, esle false
+	 */
+	public boolean addReaction(AllergyReaction reaction) {
+		reaction.setAllergy(this);
+		return getReactions().add(reaction);
+	}
+	
+	/**
+	 * Removes an allergy reaction
+	 * 
+	 * @param reaction the reaction to remove
+	 * @return true if the reaction was found and removed, else false.
+	 */
+	public boolean removeReaction(AllergyReaction reaction) {
+		return getReactions().remove(reaction);
+	}
 }
