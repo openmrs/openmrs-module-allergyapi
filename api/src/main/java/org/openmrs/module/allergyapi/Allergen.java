@@ -13,6 +13,7 @@
  */
 package org.openmrs.module.allergyapi;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openmrs.Concept;
 
 /**
@@ -88,4 +89,12 @@ public class Allergen {
 	boolean isCoded(){
 		return codedAllergen != null;
 	}
+
+	@Override
+    public String toString() {
+	    if (StringUtils.isNotBlank(nonCodedAllergen)) {
+	    	return nonCodedAllergen;
+	    }
+	    return codedAllergen.getName().getName();
+    }
 }

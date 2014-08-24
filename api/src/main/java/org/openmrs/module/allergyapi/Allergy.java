@@ -14,6 +14,7 @@
 package org.openmrs.module.allergyapi;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.openmrs.BaseOpenmrsData;
@@ -177,5 +178,12 @@ public class Allergy extends BaseOpenmrsData implements java.io.Serializable {
 	 */
 	public boolean removeReaction(AllergyReaction reaction) {
 		return getReactions().remove(reaction);
+	}
+	
+	public Date getDateLastUpdated() {
+		if (getDateChanged() != null) {
+			return getDateChanged();
+		}
+		return getDateCreated();
 	}
 }

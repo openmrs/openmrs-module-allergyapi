@@ -13,6 +13,7 @@
  */
 package org.openmrs.module.allergyapi;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openmrs.BaseOpenmrsObject;
 import org.openmrs.Concept;
 
@@ -115,4 +116,12 @@ public class AllergyReaction extends BaseOpenmrsObject implements java.io.Serial
 	public void setReactionNonCoded(String reactionNonCoded) {
 		this.reactionNonCoded = reactionNonCoded;
 	}
+	
+	@Override
+    public String toString() {
+	    if (StringUtils.isNotBlank(reactionNonCoded)) {
+	    	return reactionNonCoded;
+	    }
+	    return reaction.getName().getName();
+    }
 }
