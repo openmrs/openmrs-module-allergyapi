@@ -196,4 +196,28 @@ public class AllergyServiceTest extends BaseModuleContextSensitiveTest {
 		Assert.assertEquals(Allergies.NO_KNOWN_ALLERGIES, allergies.getAllergyStatus());
 		Assert.assertEquals(0, allergies.size());
 	}
+	
+	/**
+	 * @see PatientService#setAllergies(Patient,Allergies)
+	 * @verifies set status to no known allergies for patient without allergies
+	 */
+	@Test
+	public void setAllergies_shouldSetStatusToNoKnownAllergiesForPatientWithoutAllergies()
+	    throws Exception {
+		//get a patient without any allergies
+		Patient patient = Context.getPatientService().getPatient(7);
+		Allergies allergies = allergyService.getAllergies(patient);
+		Assert.assertEquals(Allergies.UNKNOWN, allergies.getAllergyStatus());
+		Assert.assertEquals(0, allergies.size());
+		
+		//confirm that patient has no known allergies
+		allergies = new Allergies();
+		allergies.confirmNoKnownAllergies();
+		allergyService.setAllergies(patient, allergies);
+		
+		//now the patient should have the no known allergies status
+		allergies = allergyService.getAllergies(patient);
+		Assert.assertEquals(Allergies.NO_KNOWN_ALLERGIES, allergies.getAllergyStatus());
+		Assert.assertEquals(0, allergies.size());
+	}
 }
