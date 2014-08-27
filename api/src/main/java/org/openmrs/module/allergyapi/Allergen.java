@@ -27,6 +27,8 @@ public class Allergen {
 	
 	private String nonCodedAllergen;
 	
+	public static final String OTHER_NON_CODED_UUID = "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+	
 	/**
 	 * Default constructor
 	 */
@@ -69,7 +71,10 @@ public class Allergen {
      * @param codedAllergen the codedAllergen to set
      */
     public void setCodedAllergen(Concept codedAllergen) {
-    	this.codedAllergen = codedAllergen;
+		this.codedAllergen = codedAllergen;
+		if (codedAllergen != null && !codedAllergen.getUuid().equals(OTHER_NON_CODED_UUID)) {
+			nonCodedAllergen = null;
+		}
     }
 	
     /**
@@ -83,11 +88,17 @@ public class Allergen {
      * @param nonCodedAllergen the nonCodedAllergen to set
      */
     public void setNonCodedAllergen(String nonCodedAllergen) {
-    	this.nonCodedAllergen = nonCodedAllergen;
+		this.nonCodedAllergen = nonCodedAllergen;
+		if (StringUtils.isNotBlank(nonCodedAllergen)) {
+			codedAllergen = null;
+		}
     }
 
 	boolean isCoded(){
-		return codedAllergen != null;
+		if (codedAllergen == null || codedAllergen.getUuid().equals(OTHER_NON_CODED_UUID)) {
+			return false;
+		}
+		return true;
 	}
 
 	@Override
