@@ -99,7 +99,7 @@
                                  referencedTableName="concept"/>
     </changeSet>
 
-    <changeSet id="RA-360-Add-allergy-status-to-patient" author="rpuzdrowski">
+    <changeSet id="RA-360-Add-allergy-status-to-patient-2" author="rpuzdrowski">
         <preConditions onFail="MARK_RAN">
             <tableExists tableName="patient"></tableExists>
             <not>
