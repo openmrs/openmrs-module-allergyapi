@@ -108,7 +108,9 @@
         </preConditions>
         <comment>Add allergy_status field to the patient table</comment>
         <addColumn tableName="patient">
-            <column name="allergy_status" type="varchar(50)"/>
+            <column name="allergy_status" type="varchar(50)" defaultValue="Unknown">
+            	<constraints nullable="false" />
+            </column>
         </addColumn>
     </changeSet>
 </databaseChangeLog>
