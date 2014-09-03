@@ -256,4 +256,20 @@ public class Allergies implements List<Allergy> {
 	public <T> T[] toArray(T[] a) {
 		return allergies.toArray(a);
 	}
+	
+	/**
+	 * Gets an allergy with a given id
+	 * 
+	 * @param allergyId the allergy id
+	 * @return the allergy with a matching id
+	 */
+	public Allergy getAllergy(Integer allergyId) {
+		for (Allergy allergy : allergies) {
+			if (allergy.getAllergyId() == allergyId) {
+				return allergy;
+			}
+		}
+		
+		return null;
+	}
 }

@@ -13,10 +13,13 @@
  */
 package org.openmrs.module.allergyapi;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang.builder.EqualsBuilder;
 import org.openmrs.BaseOpenmrsData;
 import org.openmrs.Concept;
 import org.openmrs.Patient;
@@ -185,5 +188,13 @@ public class Allergy extends BaseOpenmrsData implements java.io.Serializable {
 			return getDateChanged();
 		}
 		return getDateCreated();
+	}
+	
+	public boolean hasSameValues(Allergy allergy) {
+		return EqualsBuilder.reflectionEquals(this, allergy);
+	}
+	
+	public void copy(Allergy allergy) throws InvocationTargetException, IllegalAccessException {
+		BeanUtils.copyProperties(this, allergy);
 	}
 }
