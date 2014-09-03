@@ -56,6 +56,10 @@ public class PatientServiceImpl extends BaseOpenmrsService implements PatientSer
 	@Override
 	@Transactional(readOnly = true)
 	public Allergies getAllergies(Patient patient) {
+		if (patient == null) {
+			throw new IllegalArgumentException("A non null patient is required to get allergies");
+		}
+		
 		Allergies allergies = new Allergies();
 		List<Allergy> allergyList = dao.getAllergies(patient);
 		if (allergyList.size() > 0) {
