@@ -7,7 +7,7 @@
     <!--
         Create allergy table
     -->
-    <changeSet id="RA-354-create-allergy-table" author="fbiedrzycki">
+    <changeSet id="RA-354-create-allergy-table-rev1" author="fbiedrzycki">
         <preConditions onFail="MARK_RAN">
             <not>
                 <tableExists tableName="allergy"/>
@@ -21,9 +21,7 @@
             <column name="patient_id" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column name="severity_concept_id" type="int">
-                <constraints nullable="false"/>
-            </column>
+            <column name="severity_concept_id" type="int"/>
             <column name="coded_allergen" type="int">
                 <constraints nullable="false"/>
             </column>

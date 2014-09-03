@@ -20,7 +20,7 @@
             <many-to-one name="codedAllergen" column="coded_allergen" class="org.openmrs.Concept" not-null="true"/>
             <property name="nonCodedAllergen" type="java.lang.String" column="non_coded_allergen" length="255"/>
         </component>
-        <many-to-one name="severity" column="severity_concept_id" class="org.openmrs.Concept" not-null="true"/>
+        <many-to-one name="severity" column="severity_concept_id" class="org.openmrs.Concept"/>
         <property name="comment" column="comment" type="java.lang.String" length="1024"/>
         <bag name="reactions" inverse="true" cascade="all">
             <key>
