@@ -57,7 +57,7 @@ public class PatientServiceImpl extends BaseOpenmrsService implements PatientSer
 	@Transactional(readOnly = true)
 	public Allergies getAllergies(Patient patient) {
 		if (patient == null) {
-			throw new IllegalArgumentException("A non null patient is required to get allergies");
+			throw new IllegalArgumentException("An existing (NOT NULL) patient is required to get allergies");
 		}
 		
 		Allergies allergies = new Allergies();
