@@ -13,11 +13,13 @@
  */
 package org.openmrs.module.allergyapi.api.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Patient;
+import org.openmrs.api.APIException;
 import org.openmrs.api.context.Context;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.allergyapi.Allergies;
@@ -79,19 +81,57 @@ public class PatientServiceImpl extends BaseOpenmrsService implements PatientSer
 	 */
 	@Override
 	public Allergies setAllergies(Patient patient, Allergies allergies) {
-		//void any allergies that have been removed
-		List<Allergy> allergyList = getAllergies(patient);
-		for (Allergy allergy : allergyList) {
-			if (allergies.contains(allergy)) {
+		//NOTE We neither delete nor edit allergies. We instead void them.
+		//Because we shield the API users from this business logic,
+		//we end up with the complicated code below. :)
+		
+		//get the current allergies as stored in the database
+		List<Allergy> dbAllergyList = getAllergies(patient);
+		for (Allergy originalAllergy : dbAllergyList) {
+			//check if we still have each allergy, else it has just been deleted
+			if (allergies.contains(originalAllergy)) {
+				//we still have this allergy, check if it has been edited/changed
+				Allergy potentiallyEditedAllergy = allergies.getAllergy(originalAllergy.getAllergyId());
+				if (!potentiallyEditedAllergy.hasSameValues(originalAllergy)) {
+					//allergy has been edited, so void it and create a new one with the current values
+					Allergy newAllergy = new Allergy();
+					try {
+						//copy values from edited allergy, and add it to the current list
+						newAllergy.copy(potentiallyEditedAllergy);
+						allergies.add(newAllergy);
+						
+						//remove the edited allergy from our current list, and void id
+						allergies.remove(potentiallyEditedAllergy);
+						
+						//we void its original values, as came from the database, 
+						//instead the current ones which have just been copied 
+						//into the new allergy we have just created above
+						voidAllergy(originalAllergy);
+					}
+					catch (Exception ex) {
+						throw new APIException("Failed to copy edited values", ex);
+					}
+				}
 				continue;
 			}
 			
-			allergy.setVoided(true);
-			allergy.setVoidedBy(Context.getAuthenticatedUser());
-			allergy.setVoidReason("Voided by API");
-			dao.saveAllergy(allergy);
+			//void the allergy that has been deleted
+			voidAllergy(originalAllergy);
 		}
 		
 		return dao.saveAllergies(patient, allergies);
+	}
+	
+	/**
+	 * Voids a given allergy
+	 * 
+	 * @param allergy the allergy to void
+	 */
+	private void voidAllergy(Allergy allergy) {
+		allergy.setVoided(true);
+		allergy.setVoidedBy(Context.getAuthenticatedUser());
+		allergy.setDateVoided(new Date());
+		allergy.setVoidReason("Voided by API");
+		dao.saveAllergy(allergy);
 	}
 }

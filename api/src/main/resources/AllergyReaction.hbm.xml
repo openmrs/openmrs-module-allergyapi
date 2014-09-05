@@ -14,6 +14,6 @@
         <many-to-one name="allergy" class="Allergy" column="allergy_id" not-null="true"/>
         <many-to-one name="reaction" column="reaction_concept_id" class="org.openmrs.Concept" not-null="true"/>
         <property name="reactionNonCoded" type="java.lang.String" column="reaction_non_coded"/>
-        <property name="uuid" type="java.lang.String" column="uuid" length="38" unique="true"/>
+        <property name="uuid" type="java.lang.String" column="uuid" length="38" unique="true" not-null="true"/>
     </class>
 </hibernate-mapping>

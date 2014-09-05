@@ -17,12 +17,13 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.lang.builder.EqualsBuilder;
 import org.openmrs.BaseOpenmrsData;
 import org.openmrs.Concept;
 import org.openmrs.Patient;
+import org.openmrs.util.OpenmrsUtil;
 
 /**
  * Represent allergy
@@ -190,11 +191,116 @@ public class Allergy extends BaseOpenmrsData implements java.io.Serializable {
 		return getDateCreated();
 	}
 	
+	/**
+	 * Checks if this allergy has the same values as a given one.
+	 * 
+	 * @param allergy the allergy whose values to compare with
+	 * @return true if the values match, else false
+	 */
 	public boolean hasSameValues(Allergy allergy) {
-		return EqualsBuilder.reflectionEquals(this, allergy);
+		if (!OpenmrsUtil.nullSafeEquals(getAllergyId(), allergy.getAllergyId())) {
+			return false;
+		}
+		if (!OpenmrsUtil.nullSafeEquals(getPatient(), allergy.getPatient())) {
+			//if object instances are different but with the same patient id, then not changed
+			if (getPatient() != null && allergy.getPatient() != null) {
+				if (!OpenmrsUtil.nullSafeEquals(getPatient().getPatientId(), allergy.getPatient().getPatientId())) {
+					return false;
+				}
+			}
+			else {
+				return false;
+			}
+		}
+		if (!OpenmrsUtil.nullSafeEquals(getAllergen().getCodedAllergen(), allergy.getAllergen().getCodedAllergen())) {
+			//if object instances are different but with the same concept id, then not changed
+			if (getAllergen().getCodedAllergen() != null && allergy.getAllergen().getCodedAllergen() != null) {
+				if (!OpenmrsUtil.nullSafeEquals(getAllergen().getCodedAllergen().getConceptId(), allergy.getAllergen().getCodedAllergen().getConceptId())) {
+					return false;
+				}
+			}
+			else {
+				return false;
+			}
+		}
+		if (!OpenmrsUtil.nullSafeEquals(getAllergen().getNonCodedAllergen(), allergy.getAllergen().getNonCodedAllergen())) {
+			return false;
+		}
+		if (!OpenmrsUtil.nullSafeEquals(getSeverity(), allergy.getSeverity())) {
+			//if object instances are different but with the same concept id, then not changed
+			if (getSeverity() != null && allergy.getSeverity() != null) {
+				if (!OpenmrsUtil.nullSafeEquals(getSeverity().getConceptId(), allergy.getSeverity().getConceptId())) {
+					return false;
+				}
+			}
+			else {
+				return false;
+			}
+		}
+		if (!OpenmrsUtil.nullSafeEquals(getComment(), allergy.getComment())) {
+			return false;
+		}
+		if (!hasSameReactions(allergy)) {
+			return false;
+		}
+		
+		return true;
 	}
 	
+	/**
+	 * Checks if this allergy has the same reaction values as those in the given one
+	 * 
+	 * @param allergy the allergy who reaction values to compare with
+	 * @return true if the values match, else false
+	 */
+	private boolean hasSameReactions(Allergy allergy) {
+		if (getReactions().size() != allergy.getReactions().size()) {
+			return false;
+		}
+		
+		for (AllergyReaction reaction : getReactions()) {
+			AllergyReaction rc = allergy.getAllergyReaction(reaction.getAllergyReactionId());
+			if (!reaction.hasSameValues(rc)) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	/**
+	 * Gets an allergy reaction with a given id
+	 * 
+	 * @param allergyReactionId the allergy reaction id
+	 * @return the allergy reaction with a matching id
+	 */
+	public AllergyReaction getAllergyReaction(Integer allergyReactionId) {
+		for (AllergyReaction reaction : reactions) {
+			if (reaction.getAllergyReactionId() == allergyReactionId) {
+				return reaction;
+			}
+		}
+		
+		return null;
+	}
+	
+	/**
+	 * Copies all property values, apart from the id and uuid,
+	 * from the given allergy into this object
+	 * 
+	 * @param allergy the allergy whose propery values to copy
+	 * @throws InvocationTargetException
+	 * @throws IllegalAccessException
+	 */
 	public void copy(Allergy allergy) throws InvocationTargetException, IllegalAccessException {
 		BeanUtils.copyProperties(this, allergy);
+		
+		setAllergyId(null);
+		setUuid(UUID.randomUUID().toString());
+		
+		for (AllergyReaction reaction : reactions) {
+			reaction.setAllergyReactionId(null);
+			reaction.setUuid(UUID.randomUUID().toString());
+		}
 	}
 }

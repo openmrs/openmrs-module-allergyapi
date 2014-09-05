@@ -50,6 +50,14 @@ public interface PatientService extends OpenmrsService {
 	 * @should void all allergies and set status to unknown if all allergies are removed
 	 * @should set status to no known allergies for patient without allergies
 	 * @should void all allergies and set status to no known allergies if all allergies are removed and status set as such
+	 * @should void allergies with edited comment
+	 * @should void allergies with edited severity
+	 * @should void allergies with edited coded allergen
+	 * @should void allergies with edited non coded allergen
+	 * @should void allergies with edited reaction coded
+	 * @should void allergies with edited reaction non coded
+	 * @should void allergies with removed reactions
+	 * @should void allergies with added reactions
 	 */
 	Allergies setAllergies(Patient patient, Allergies allergies);
 }

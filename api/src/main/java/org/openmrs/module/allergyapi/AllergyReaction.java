@@ -16,6 +16,7 @@ package org.openmrs.module.allergyapi;
 import org.apache.commons.lang3.StringUtils;
 import org.openmrs.BaseOpenmrsObject;
 import org.openmrs.Concept;
+import org.openmrs.util.OpenmrsUtil;
 
 /**
  * Represent allergy reactions
@@ -124,4 +125,32 @@ public class AllergyReaction extends BaseOpenmrsObject implements java.io.Serial
 	    }
 	    return reaction.getName().getName();
     }
+	
+	/**
+	 * Checks if this reaction has the same values as the given one
+	 * 
+	 * @param reaction the reaction whose values to compare with
+	 * @return true if the values match, else false
+	 */
+	public boolean hasSameValues(AllergyReaction reaction) {
+		if (!OpenmrsUtil.nullSafeEquals(getAllergyReactionId(), reaction.getAllergyReactionId())) {
+			return false;
+		}
+		if (!OpenmrsUtil.nullSafeEquals(getReaction(), reaction.getReaction())) {
+			//if object instances are different but with the same concept id, then not changed
+			if (getReaction() != null && reaction.getReaction() != null) {
+				if (!OpenmrsUtil.nullSafeEquals(getReaction().getConceptId(), reaction.getReaction().getConceptId())) {
+					return false;
+				}
+			}
+			else {
+				return false;
+			}
+		}
+		if (!OpenmrsUtil.nullSafeEquals(getReactionNonCoded(), reaction.getReactionNonCoded())) {
+			return false;
+		}
+		
+		return true;
+	}
 }

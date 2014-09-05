@@ -22,7 +22,7 @@
         </component>
         <many-to-one name="severity" column="severity_concept_id" class="org.openmrs.Concept"/>
         <property name="comment" column="comment" type="java.lang.String" length="1024"/>
-        <bag name="reactions" inverse="true" cascade="all">
+        <bag name="reactions" inverse="true" cascade="all" lazy="false">
             <key>
                 <column name="allergy_id" not-null="true"/>
             </key>
@@ -36,6 +36,6 @@
         <property name="dateVoided" type="java.util.Date" column="date_voided" length="19"/>
         <property name="voidReason" type="java.lang.String" column="void_reason" length="255"/>
         <many-to-one name="voidedBy" column="voided_by" class="org.openmrs.User"/>
-        <property name="uuid" type="java.lang.String" column="uuid" length="38" unique="true"/>
+        <property name="uuid" type="java.lang.String" column="uuid" length="38" unique="true" not-null="true"/>
     </class>
 </hibernate-mapping>
