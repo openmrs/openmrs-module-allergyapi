@@ -19,7 +19,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.openmrs.BaseOpenmrsData;
 import org.openmrs.Concept;
 import org.openmrs.Patient;
@@ -42,7 +41,7 @@ public class Allergy extends BaseOpenmrsData implements java.io.Serializable {
 	
 	private String comment;
 	
-	private List<AllergyReaction> reactions;
+	private List<AllergyReaction> reactions = new ArrayList<AllergyReaction>();
 	
 	/**
 	 * Default constructor
@@ -153,9 +152,6 @@ public class Allergy extends BaseOpenmrsData implements java.io.Serializable {
 	 * @return Returns the reactions
 	 */
 	public List<AllergyReaction> getReactions() {
-        if(reactions == null){
-            reactions = new ArrayList<AllergyReaction>();
-        }
 		return reactions;
 	}
 	
@@ -299,12 +295,16 @@ public class Allergy extends BaseOpenmrsData implements java.io.Serializable {
 	 * @throws IllegalAccessException
 	 */
 	public void copy(Allergy allergy) throws InvocationTargetException, IllegalAccessException {
-		BeanUtils.copyProperties(this, allergy);
-		
 		setAllergyId(null);
 		setUuid(UUID.randomUUID().toString());
+		setPatient(allergy.getPatient());
+		setAllergen(allergy.getAllergen());
+		setSeverity(allergy.getSeverity());
+		setComment(allergy.getComment());
+		setReactions(new ArrayList<AllergyReaction>());
 		
-		for (AllergyReaction reaction : reactions) {
+		for (AllergyReaction reaction : allergy.getReactions()) {
+			reactions.add(reaction);
 			reaction.setAllergyReactionId(null);
 			reaction.setUuid(UUID.randomUUID().toString());
 		}
