@@ -61,7 +61,11 @@ public class Allergy extends BaseOpenmrsData implements java.io.Serializable {
 		this.allergen = allergen;
 		this.severity = severity;
 		this.comment = comment;
-		this.reactions = reactions;
+		
+		//we do not allow to be in a state where reactions is null
+		if (reactions != null) {
+			this.reactions = reactions;
+		}
 	}
 	
     /**
@@ -159,7 +163,10 @@ public class Allergy extends BaseOpenmrsData implements java.io.Serializable {
 	 * @param reactions the reactions to set
 	 */
 	public void setReactions(List<AllergyReaction> reactions) {
-		this.reactions = reactions;
+		//we do not allow to be in a state where reactions is null
+		if (reactions != null) {
+			this.reactions = reactions;
+		}
 	}
 
 	/**
