@@ -265,7 +265,7 @@ public class Allergies implements List<Allergy> {
 	 */
 	public Allergy getAllergy(Integer allergyId) {
 		for (Allergy allergy : allergies) {
-			if (allergy.getAllergyId() == allergyId) {
+			if (allergy.getAllergyId().equals(allergyId)) {
 				return allergy;
 			}
 		}

@@ -42,7 +42,7 @@ public class Allergy extends BaseOpenmrsData implements java.io.Serializable {
 	
 	private String comment;
 	
-	private List<AllergyReaction> reactions = new ArrayList<AllergyReaction>();
+	private List<AllergyReaction> reactions;
 	
 	/**
 	 * Default constructor
@@ -153,6 +153,9 @@ public class Allergy extends BaseOpenmrsData implements java.io.Serializable {
 	 * @return Returns the reactions
 	 */
 	public List<AllergyReaction> getReactions() {
+        if(reactions == null){
+            reactions = new ArrayList<AllergyReaction>();
+        }
 		return reactions;
 	}
 	
@@ -170,6 +173,9 @@ public class Allergy extends BaseOpenmrsData implements java.io.Serializable {
 	 * @return true if the reaction was added, else false
 	 */
 	public boolean addReaction(AllergyReaction reaction) {
+        if(getReactionConcepts().contains(reaction.getReaction())){
+            return false;
+        }
 		reaction.setAllergy(this);
 		return getReactions().add(reaction);
 	}
@@ -303,4 +309,12 @@ public class Allergy extends BaseOpenmrsData implements java.io.Serializable {
 			reaction.setUuid(UUID.randomUUID().toString());
 		}
 	}
+
+    private List<Concept> getReactionConcepts(){
+        List<Concept> reactionConcepts = new ArrayList<Concept>(getReactions().size());
+        for (AllergyReaction ar : getReactions()) {
+            reactionConcepts.add(ar.getReaction());
+        }
+        return reactionConcepts;
+    }
 }
