@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 import org.openmrs.api.APIException;
+import org.openmrs.util.OpenmrsUtil;
 
 /**
  * Represents patient allergies
@@ -265,7 +266,7 @@ public class Allergies implements List<Allergy> {
 	 */
 	public Allergy getAllergy(Integer allergyId) {
 		for (Allergy allergy : allergies) {
-			if (allergy.getAllergyId().equals(allergyId)) {
+			if (OpenmrsUtil.nullSafeEquals(allergy.getAllergyId(), allergyId)) {
 				return allergy;
 			}
 		}

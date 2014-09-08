@@ -167,6 +167,9 @@ public class Allergy extends BaseOpenmrsData implements java.io.Serializable {
 		if (reactions != null) {
 			this.reactions = reactions;
 		}
+		else {
+			this.reactions.clear();
+		}
 	}
 
 	/**
@@ -285,7 +288,7 @@ public class Allergy extends BaseOpenmrsData implements java.io.Serializable {
 	 */
 	public AllergyReaction getAllergyReaction(Integer allergyReactionId) {
 		for (AllergyReaction reaction : reactions) {
-			if (reaction.getAllergyReactionId() == allergyReactionId) {
+			if (OpenmrsUtil.nullSafeEquals(reaction.getAllergyReactionId(), allergyReactionId)) {
 				return reaction;
 			}
 		}
