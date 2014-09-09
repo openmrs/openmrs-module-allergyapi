@@ -26,6 +26,49 @@
 		<class>${project.parent.groupId}.${project.parent.artifactId}.extension.html.AdminList</class>
 	</extension>
 	
+	<!-- Required Global Properties -->
+	<globalProperty>
+		<property>allergy.concept.severity.mild</property>
+		<defaultValue>1498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</defaultValue>
+		<description>UUID for the MILD severity concept</description>
+	</globalProperty>
+	
+	<globalProperty>
+		<property>allergy.concept.severity.moderate</property>
+		<defaultValue>1499AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</defaultValue>
+		<description>UUID for the MODERATE severity concept</description>
+	</globalProperty>
+	
+	<globalProperty>
+		<property>allergy.concept.severity.severe</property>
+		<defaultValue>1500AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</defaultValue>
+		<description>UUID for the SEVERE severity concept</description>
+	</globalProperty>
+	
+	<globalProperty>
+		<property>allergy.concept.allergen.food</property>
+		<defaultValue>162553AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</defaultValue>
+		<description>UUID for the food allergens concept</description>
+	</globalProperty>
+	
+	<globalProperty>
+		<property>allergy.concept.allergen.drug</property>
+		<defaultValue>162552AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</defaultValue>
+		<description>UUID for the drug allergens concept</description>
+	</globalProperty>
+	
+	<globalProperty>
+		<property>allergy.concept.allergen.environment</property>
+		<defaultValue>162554AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</defaultValue>
+		<description>UUID for the environment allergens concept</description>
+	</globalProperty>
+	
+	<globalProperty>
+		<property>allergy.concept.reactions</property>
+		<defaultValue>162555AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</defaultValue>
+		<description>UUID for the allergy reactions concept</description>
+	</globalProperty>
+	
 	<!-- Maps hibernate file's, if present -->
 	<mappingFiles>
 		Allergy.hbm.xml
