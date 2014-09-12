@@ -67,4 +67,8 @@ public class AllergyProperties {
 	public Concept getAllergyReactionsConcept() {
 		return getConceptByGlobalProperty("allergy.concept.reactions");
 	}
+	
+	public Concept getOtherNonCodedConcept() {
+		return getConceptByGlobalProperty("allergy.concept.otherNonCoded");
+	}
 }

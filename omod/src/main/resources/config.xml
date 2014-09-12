@@ -69,6 +69,12 @@
 		<description>UUID for the allergy reactions concept</description>
 	</globalProperty>
 	
+	<globalProperty>
+		<property>allergy.concept.otherNonCoded</property>
+		<defaultValue>5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</defaultValue>
+		<description>UUID for the allergy other non coded concept</description>
+	</globalProperty>
+	
 	<!-- Maps hibernate file's, if present -->
 	<mappingFiles>
 		Allergy.hbm.xml
