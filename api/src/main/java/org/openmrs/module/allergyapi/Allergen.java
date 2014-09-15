@@ -91,7 +91,7 @@ public class Allergen {
 		this.nonCodedAllergen = nonCodedAllergen;
 		if (StringUtils.isNotBlank(nonCodedAllergen)) {
 			if (codedAllergen != null && !codedAllergen.getUuid().equals(OTHER_NON_CODED_UUID)) {
-				codedAllergen = null;
+				//codedAllergen = null;
 			}
 		}
     }
