@@ -26,7 +26,7 @@ public class AllergenTest extends BaseModuleContextSensitiveTest {
 	
 	@Test
 	public void shouldEitherBeCodedOrFreeText() {
-		/*allergen = new Allergen(AllergenType.DRUG, new Concept(3), null);
+		allergen = new Allergen(AllergenType.DRUG, new Concept(3), null);
 		assertCoded();
 		
 		allergen.setNonCodedAllergen("Non coded allergen");
@@ -36,7 +36,7 @@ public class AllergenTest extends BaseModuleContextSensitiveTest {
 		assertCoded();
 		
 		allergen = new Allergen(AllergenType.DRUG, null, "Non coded allergen");
-		assertNonCoded();*/
+		assertNonCoded();
 	}
 	
 	private void assertCoded() {
