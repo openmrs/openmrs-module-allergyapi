@@ -340,4 +340,19 @@ public class Allergy extends BaseOpenmrsData implements java.io.Serializable {
 		}
 		return null;
 	}
+	
+	/**
+	 * Gets the reaction with a given concept
+	 * 
+	 * @param concept the concept
+	 * @return the reaction if any exists
+	 */
+	public AllergyReaction getReaction(Concept concept) {
+		for (AllergyReaction reaction : reactions) {
+			if (reaction.getReaction().equals(concept)) {
+				return reaction;
+			}
+		}
+		return null;
+	}
 }
