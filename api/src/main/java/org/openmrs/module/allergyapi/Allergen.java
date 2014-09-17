@@ -96,7 +96,7 @@ public class Allergen {
 		}
     }
 
-	boolean isCoded(){
+	public boolean isCoded(){
 		if (codedAllergen == null || codedAllergen.getUuid().equals(OTHER_NON_CODED_UUID)) {
 			return false;
 		}
