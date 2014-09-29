@@ -94,6 +94,7 @@ public class Allergies implements List<Allergy> {
 	 */
 	@Override
 	public boolean addAll(Collection<? extends Allergy> c) {
+		throwExceptionIfHasDuplicateAllergen(c);
 		for (Allergy allergy : c) {
 			throwExceptionIfHasDuplicateAllergen(allergy);
 		}
@@ -106,6 +107,7 @@ public class Allergies implements List<Allergy> {
 	 */
 	@Override
 	public boolean addAll(int index, Collection<? extends Allergy> c) {
+		throwExceptionIfHasDuplicateAllergen(c);
 		for (Allergy allergy : c) {
 			throwExceptionIfHasDuplicateAllergen(allergy);
 		}
@@ -288,7 +290,32 @@ public class Allergies implements List<Allergy> {
 	 * 
 	 * @param allergy the given allergy whose allergen to compare with
 	 */
-	public void throwExceptionIfHasDuplicateAllergen(Allergy allergy) {
+	private void throwExceptionIfHasDuplicateAllergen(Allergy allergy) {
+		throwExceptionIfHasAllergen(allergy, allergies);
+	}
+	
+	/**
+	 * Throws an exception if the given allergies collection has duplicate allergen
+	 * 
+	 * @param allergies the given allergies collection
+	 */
+	private void throwExceptionIfHasDuplicateAllergen(Collection<? extends Allergy> allergies) {
+		List<Allergy> allergiesCopy = new ArrayList<Allergy>();
+		allergiesCopy.addAll(allergies);
+		
+		for (Allergy allergy : allergies) {
+			throwExceptionIfHasAllergen(allergy, allergiesCopy);
+		}
+	}
+	
+	/**
+	 * Throws an exception if the given allergies collection has
+	 * an allergen similar to that of the given allergy
+	 * 
+	 * @param allergy the given allergy
+	 * @param allergies the given allergies collection
+	 */
+	private void throwExceptionIfHasAllergen(Allergy allergy, Collection<? extends Allergy> allergies) {
 		for (Allergy alg : allergies) {
 			if (alg.hasSameAllergen(allergy)) {
 				throw new APIException("Duplicate allergens not allowed");

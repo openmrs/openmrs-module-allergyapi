@@ -424,4 +424,82 @@ public class AllergiesTest {
 		
 		allergies.addAll(0, allergies);
 	}
+	
+	/**
+	 * @see {@link Allergies#addAll(java.util.Collection)}
+	 */
+	@Test(expected = APIException.class)
+	public void addAll4_shouldNotAllowDuplicateCodedAllergen(){
+		Allergy allergy1 = new Allergy();
+		allergy1.setAllergen(new Allergen(null, new Concept(1), null));
+		
+		Allergy allergy2 = new Allergy();
+		allergy2.setAllergen(new Allergen(null, new Concept(1), null));
+		
+		List<Allergy> allergies = new ArrayList<Allergy>();
+		allergies.add(allergy1);
+		allergies.add(allergy2);
+		
+		new Allergies().addAll(allergies);
+	}
+	
+	/**
+	 * @see {@link Allergies#addAll(int, java.util.Collection)}
+	 */
+	@Test(expected = APIException.class)
+	public void addAll5_shouldNotAllowDuplicateCodedAllergen(){
+		Allergy allergy1 = new Allergy();
+		allergy1.setAllergen(new Allergen(null, new Concept(1), null));
+		
+		Allergy allergy2 = new Allergy();
+		allergy2.setAllergen(new Allergen(null, new Concept(1), null));
+		
+		List<Allergy> allergies = new ArrayList<Allergy>();
+		allergies.add(allergy1);
+		allergies.add(allergy2);
+		
+		new Allergies().addAll(0, allergies);
+	}
+	
+	/**
+	 * @see {@link Allergies#addAll(java.util.Collection)}
+	 */
+	@Test(expected = APIException.class)
+	public void addAll6_shouldNotAllowDuplicateNonCodedAllergen(){
+		Concept concept = new Concept();
+		concept.setUuid(Allergen.OTHER_NON_CODED_UUID);
+		
+		Allergy allergy1 = new Allergy();
+		allergy1.setAllergen(new Allergen(null, concept, "OTHER VALUE"));
+		
+		Allergy allergy2 = new Allergy();
+		allergy2.setAllergen(new Allergen(null, concept, "OTHER VALUE"));
+		
+		List<Allergy> allergies = new ArrayList<Allergy>();
+		allergies.add(allergy1);
+		allergies.add(allergy2);
+		
+		new Allergies().addAll(allergies);
+	}
+	
+	/**
+	 * @see {@link Allergies#addAll(int, java.util.Collection)}
+	 */
+	@Test(expected = APIException.class)
+	public void addAll7_shouldNotAllowDuplicateNonCodedAllergen(){
+		Concept concept = new Concept();
+		concept.setUuid(Allergen.OTHER_NON_CODED_UUID);
+		
+		Allergy allergy1 = new Allergy();
+		allergy1.setAllergen(new Allergen(null, concept, "OTHER VALUE"));
+		
+		Allergy allergy2 = new Allergy();
+		allergy2.setAllergen(new Allergen(null, concept, "OTHER VALUE"));
+		
+		List<Allergy> allergies = new ArrayList<Allergy>();
+		allergies.add(allergy1);
+		allergies.add(allergy2);
+		
+		new Allergies().addAll(0, allergies);
+	}
 }
