@@ -136,7 +136,7 @@ public class Allergen {
 			if (nonCodedAllergen == null || allergen.getNonCodedAllergen() == null) {
 				return false;
 			}
-			if (!nonCodedAllergen.equals(allergen.getNonCodedAllergen())) {
+			if (!nonCodedAllergen.equalsIgnoreCase(allergen.getNonCodedAllergen())) {
 				return false;
 			}
 		}

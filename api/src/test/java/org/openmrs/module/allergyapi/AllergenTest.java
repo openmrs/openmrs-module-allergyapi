@@ -68,6 +68,13 @@ public class AllergenTest {
 	}
 	
 	@Test
+	public void isSameAllergen_shouldBeCaseInsensitiveForNonCodedAllergen() {
+		Concept concept = new Concept();
+		concept.setUuid(Allergen.OTHER_NON_CODED_UUID);
+		Assert.assertTrue(new Allergen(null, concept, "other value").isSameAllergen(new Allergen(null, concept, "OTHER VALUE")));
+	}
+	
+	@Test
 	public void isSameAllergen_shouldReturnFalseForDifferentNonCodedAllergen() {
 		Concept concept = new Concept();
 		concept.setUuid(Allergen.OTHER_NON_CODED_UUID);
