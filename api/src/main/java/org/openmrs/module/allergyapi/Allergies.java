@@ -304,7 +304,9 @@ public class Allergies implements List<Allergy> {
 		allergiesCopy.addAll(allergies);
 		
 		for (Allergy allergy : allergies) {
+			allergiesCopy.remove(allergy);
 			throwExceptionIfHasAllergen(allergy, allergiesCopy);
+			allergiesCopy.add(allergy);
 		}
 	}
 	
