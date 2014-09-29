@@ -110,4 +110,37 @@ public class Allergen {
 	    }
 	    return codedAllergen.getName().getName();
     }
+	
+	/**
+	 * Checks if this allergen is the same as the given one
+	 * 
+	 * @param allergen the given allergen to test with
+	 * 
+	 * @should return true for same coded allergen
+	 * @should return false for different coded allergen
+	 * @should return true for same non coded allergen
+	 * @should return false for different non coded allergen
+	 * 
+	 * @return true if the same, else false
+	 */
+	public boolean isSameAllergen(Allergen allergen) {
+		if (isCoded()) {
+			if (allergen.getCodedAllergen() == null) {
+				return false;
+			}
+			if (!codedAllergen.getConceptId().equals(allergen.getCodedAllergen().getConceptId())) {
+				return false;
+			}
+		}
+		else {
+			if (nonCodedAllergen == null || allergen.getNonCodedAllergen() == null) {
+				return false;
+			}
+			if (!nonCodedAllergen.equals(allergen.getNonCodedAllergen())) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
 }

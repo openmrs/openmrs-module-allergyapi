@@ -16,12 +16,11 @@ package org.openmrs.module.allergyapi;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openmrs.Concept;
-import org.openmrs.test.BaseModuleContextSensitiveTest;
 
 /**
  * Tests methods in {@link org.openmrs.module.allergyapi.Allergen}.
  */
-public class AllergenTest extends BaseModuleContextSensitiveTest {
+public class AllergenTest {
 	Allergen allergen;
 	
 	@Test
@@ -49,5 +48,29 @@ public class AllergenTest extends BaseModuleContextSensitiveTest {
 		Assert.assertNull(allergen.getCodedAllergen());
 		Assert.assertEquals(allergen.getNonCodedAllergen(), "Non coded allergen");
 		Assert.assertFalse(allergen.isCoded());
+	}
+	
+	@Test
+	public void isSameAllergen_shouldReturnTrueForSameCodedAllergen() {
+		Assert.assertTrue(new Allergen(null, new Concept(1), null).isSameAllergen(new Allergen(null, new Concept(1), null)));
+	}
+	
+	@Test
+	public void isSameAllergen_shouldReturnFalseForDifferentCodedAllergen() {
+		Assert.assertFalse(new Allergen(null, new Concept(1), null).isSameAllergen(new Allergen(null, new Concept(2), null)));
+	}
+	
+	@Test
+	public void isSameAllergen_shouldReturnTrueForSameNonCodedAllergen() {
+		Concept concept = new Concept();
+		concept.setUuid(Allergen.OTHER_NON_CODED_UUID);
+		Assert.assertTrue(new Allergen(null, concept, "OTHER VALUE").isSameAllergen(new Allergen(null, concept, "OTHER VALUE")));
+	}
+	
+	@Test
+	public void isSameAllergen_shouldReturnFalseForDifferentNonCodedAllergen() {
+		Concept concept = new Concept();
+		concept.setUuid(Allergen.OTHER_NON_CODED_UUID);
+		Assert.assertFalse(new Allergen(null, concept, "OTHER VALUE1").isSameAllergen(new Allergen(null, concept, "OTHER VALUE2")));
 	}
 }

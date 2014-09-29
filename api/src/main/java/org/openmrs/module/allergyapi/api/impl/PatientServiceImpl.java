@@ -96,12 +96,12 @@ public class PatientServiceImpl extends BaseOpenmrsService implements PatientSer
 					//allergy has been edited, so void it and create a new one with the current values
 					Allergy newAllergy = new Allergy();
 					try {
+						//remove the edited allergy from our current list, and void id
+						allergies.remove(potentiallyEditedAllergy);
+						
 						//copy values from edited allergy, and add it to the current list
 						newAllergy.copy(potentiallyEditedAllergy);
 						allergies.add(newAllergy);
-						
-						//remove the edited allergy from our current list, and void id
-						allergies.remove(potentiallyEditedAllergy);
 						
 						//we void its original values, as came from the database, 
 						//instead the current ones which have just been copied 

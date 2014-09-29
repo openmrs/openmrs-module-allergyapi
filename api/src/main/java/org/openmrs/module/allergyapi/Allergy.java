@@ -355,4 +355,17 @@ public class Allergy extends BaseOpenmrsData implements java.io.Serializable {
 		}
 		return null;
 	}
+	
+	/**
+	 * Checks if we have the same allergen as that in the given allergy
+	 * 
+	 * @param allergy the given allergy whose allergen to check
+	 * @return true if the same, else false
+	 */
+	public boolean hasSameAllergen(Allergy allergy) {
+		if (allergen == null || allergy.getAllergen() == null) {
+			return false;
+		}
+		return allergen.isSameAllergen(allergy.getAllergen());
+	}
 }

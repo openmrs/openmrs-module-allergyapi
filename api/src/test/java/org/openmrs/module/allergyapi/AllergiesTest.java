@@ -13,13 +13,14 @@
  */
 package org.openmrs.module.allergyapi;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openmrs.Concept;
 import org.openmrs.api.APIException;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Tests methods in {@link org.openmrs.module.allergyapi.Allergies}.
@@ -142,5 +143,285 @@ public class AllergiesTest {
 	public void shouldThrowAnErrorWhenTryingConfirmNoKnowAllergiesWhileAllergiesIsNotEmpty(){
 		allergies.add(new Allergy());
 		allergies.confirmNoKnownAllergies();
+	}
+	
+	/**
+	 * @see {@link Allergies#add(Allergy)}
+	 */
+	@Test(expected = APIException.class)
+	public void add_shouldNotAllowDuplicateCodedAllergen(){
+		Allergy allergy1 = new Allergy();
+		allergy1.setAllergen(new Allergen(null, new Concept(1), null));
+		
+		Allergy allergy2 = new Allergy();
+		allergy2.setAllergen(new Allergen(null, new Concept(1), null));
+		
+		allergies.add(allergy1);
+		allergies.add(allergy2);
+	}
+	
+	/**
+	 * @see {@link Allergies#add(Allergy)}
+	 */
+	public void add_shouldAllowNonDuplicateCodedAllergen(){
+		Allergy allergy1 = new Allergy();
+		allergy1.setAllergen(new Allergen(null, new Concept(1), null));
+		
+		Allergy allergy2 = new Allergy();
+		allergy2.setAllergen(new Allergen(null, new Concept(2), null));
+		
+		allergies.add(allergy1);
+		allergies.add(allergy2);
+	}
+	
+	/**
+	 * @see {@link Allergies#add(Allergy)}
+	 */
+	@Test(expected = APIException.class)
+	public void add_shouldNotAllowDuplicateNonCodedAllergen(){
+		Concept concept = new Concept();
+		concept.setUuid(Allergen.OTHER_NON_CODED_UUID);
+		
+		Allergy allergy1 = new Allergy();
+		allergy1.setAllergen(new Allergen(null, concept, "OTHER VALUE"));
+		
+		Allergy allergy2 = new Allergy();
+		allergy2.setAllergen(new Allergen(null, concept, "OTHER VALUE"));
+		
+		allergies.add(allergy1);
+		allergies.add(allergy2);
+	}
+	
+	/**
+	 * @see {@link Allergies#add(Allergy)}
+	 */
+	public void add_shouldAllowNonDuplicateNonCodedAllergen(){
+		Concept concept = new Concept();
+		concept.setUuid(Allergen.OTHER_NON_CODED_UUID);
+		
+		Allergy allergy1 = new Allergy();
+		allergy1.setAllergen(new Allergen(null, concept, "OTHER VALUE1"));
+		
+		Allergy allergy2 = new Allergy();
+		allergy2.setAllergen(new Allergen(null, concept, "OTHER VALUE2"));
+		
+		allergies.add(allergy1);
+		allergies.add(allergy2);
+	}
+	
+	/**
+	 * @see {@link Allergies#add(int, Allergy)}
+	 */
+	@Test(expected = APIException.class)
+	public void add2_shouldNotAllowDuplicateCodedAllergen(){
+		Allergy allergy1 = new Allergy();
+		allergy1.setAllergen(new Allergen(null, new Concept(1), null));
+		
+		Allergy allergy2 = new Allergy();
+		allergy2.setAllergen(new Allergen(null, new Concept(1), null));
+		
+		allergies.add(0, allergy1);
+		allergies.add(0, allergy2);
+	}
+	
+	/**
+	 * @see {@link Allergies#add(int, Allergy)}
+	 */
+	public void add2_shouldAllowNonDuplicateCodedAllergen(){
+		Allergy allergy1 = new Allergy();
+		allergy1.setAllergen(new Allergen(null, new Concept(1), null));
+		
+		Allergy allergy2 = new Allergy();
+		allergy2.setAllergen(new Allergen(null, new Concept(2), null));
+		
+		allergies.add(0, allergy1);
+		allergies.add(0, allergy2);
+	}
+	
+	/**
+	 * @see {@link Allergies#add(int, Allergy)}
+	 */
+	@Test(expected = APIException.class)
+	public void add2_shouldNotAllowDuplicateNonCodedAllergen(){
+		Concept concept = new Concept();
+		concept.setUuid(Allergen.OTHER_NON_CODED_UUID);
+		
+		Allergy allergy1 = new Allergy();
+		allergy1.setAllergen(new Allergen(null, concept, "OTHER VALUE"));
+		
+		Allergy allergy2 = new Allergy();
+		allergy2.setAllergen(new Allergen(null, concept, "OTHER VALUE"));
+		
+		allergies.add(0, allergy1);
+		allergies.add(0, allergy2);
+	}
+	
+	/**
+	 * @see {@link Allergies#add(int, Allergy)}
+	 */
+	public void add2_shouldAllowNonDuplicateNonCodedAllergen(){
+		Concept concept = new Concept();
+		concept.setUuid(Allergen.OTHER_NON_CODED_UUID);
+		
+		Allergy allergy1 = new Allergy();
+		allergy1.setAllergen(new Allergen(null, concept, "OTHER VALUE1"));
+		
+		Allergy allergy2 = new Allergy();
+		allergy2.setAllergen(new Allergen(null, concept, "OTHER VALUE2"));
+		
+		allergies.add(0, allergy1);
+		allergies.add(0, allergy2);
+	}
+	
+	/**
+	 * @see {@link Allergies#addAll(java.util.Collection)}
+	 */
+	@Test(expected = APIException.class)
+	public void addAll_shouldNotAllowDuplicateCodedAllergen(){
+		Allergy allergy1 = new Allergy();
+		allergy1.setAllergen(new Allergen(null, new Concept(1), null));
+		
+		Allergy allergy2 = new Allergy();
+		allergy2.setAllergen(new Allergen(null, new Concept(1), null));
+		
+		Allergies allergies = new Allergies();
+		allergies.add(allergy1);
+		allergies.add(allergy2);
+		
+		allergies.addAll(allergies);
+	}
+	
+	/**
+	 * @see {@link Allergies#addAll(java.util.Collection)}
+	 */
+	public void addAll_shouldAllowNonDuplicateCodedAllergen(){
+		Allergy allergy1 = new Allergy();
+		allergy1.setAllergen(new Allergen(null, new Concept(1), null));
+		
+		Allergy allergy2 = new Allergy();
+		allergy2.setAllergen(new Allergen(null, new Concept(2), null));
+		
+		Allergies allergies = new Allergies();
+		allergies.add(allergy1);
+		allergies.add(allergy2);
+		
+		allergies.addAll(allergies);
+	}
+	
+	/**
+	 * @see {@link Allergies#addAll(java.util.Collection)}
+	 */
+	@Test(expected = APIException.class)
+	public void addAll_shouldNotAllowDuplicateNonCodedAllergen(){
+		Concept concept = new Concept();
+		concept.setUuid(Allergen.OTHER_NON_CODED_UUID);
+		
+		Allergy allergy1 = new Allergy();
+		allergy1.setAllergen(new Allergen(null, concept, "OTHER VALUE"));
+		
+		Allergy allergy2 = new Allergy();
+		allergy2.setAllergen(new Allergen(null, concept, "OTHER VALUE"));
+		
+		Allergies allergies = new Allergies();
+		allergies.add(allergy1);
+		allergies.add(allergy2);
+		
+		allergies.addAll(allergies);
+	}
+	
+	/**
+	 * @see {@link Allergies#addAll(java.util.Collection)}
+	 */
+	public void addAll_shouldAllowNonDuplicateNonCodedAllergen(){
+		Concept concept = new Concept();
+		concept.setUuid(Allergen.OTHER_NON_CODED_UUID);
+		
+		Allergy allergy1 = new Allergy();
+		allergy1.setAllergen(new Allergen(null, concept, "OTHER VALUE1"));
+		
+		Allergy allergy2 = new Allergy();
+		allergy2.setAllergen(new Allergen(null, concept, "OTHER VALUE2"));
+		
+		Allergies allergies = new Allergies();
+		allergies.add(allergy1);
+		allergies.add(allergy2);
+		
+		allergies.addAll(allergies);
+	}
+	
+	/**
+	 * @see {@link Allergies#addAll(int, java.util.Collection)}
+	 */
+	@Test(expected = APIException.class)
+	public void addAll2_shouldNotAllowDuplicateCodedAllergen(){
+		Allergy allergy1 = new Allergy();
+		allergy1.setAllergen(new Allergen(null, new Concept(1), null));
+		
+		Allergy allergy2 = new Allergy();
+		allergy2.setAllergen(new Allergen(null, new Concept(1), null));
+		
+		Allergies allergies = new Allergies();
+		allergies.add(allergy1);
+		allergies.add(allergy2);
+		
+		allergies.addAll(0, allergies);
+	}
+	
+	/**
+	 * @see {@link Allergies#addAll(int, java.util.Collection)}
+	 */
+	public void addAll2_shouldAllowNonDuplicateCodedAllergen(){
+		Allergy allergy1 = new Allergy();
+		allergy1.setAllergen(new Allergen(null, new Concept(1), null));
+		
+		Allergy allergy2 = new Allergy();
+		allergy2.setAllergen(new Allergen(null, new Concept(2), null));
+		
+		Allergies allergies = new Allergies();
+		allergies.add(allergy1);
+		allergies.add(allergy2);
+		
+		allergies.addAll(0, allergies);
+	}
+	
+	/**
+	 * @see {@link Allergies#addAll(int, java.util.Collection)}
+	 */
+	@Test(expected = APIException.class)
+	public void addAll2_shouldNotAllowDuplicateNonCodedAllergen(){
+		Concept concept = new Concept();
+		concept.setUuid(Allergen.OTHER_NON_CODED_UUID);
+		
+		Allergy allergy1 = new Allergy();
+		allergy1.setAllergen(new Allergen(null, concept, "OTHER VALUE"));
+		
+		Allergy allergy2 = new Allergy();
+		allergy2.setAllergen(new Allergen(null, concept, "OTHER VALUE"));
+		
+		Allergies allergies = new Allergies();
+		allergies.add(allergy1);
+		allergies.add(allergy2);
+		
+		allergies.addAll(0, allergies);
+	}
+	
+	/**
+	 * @see {@link Allergies#addAll(int, java.util.Collection)}
+	 */
+	public void addAll2_shouldAllowNonDuplicateNonCodedAllergen(){
+		Concept concept = new Concept();
+		concept.setUuid(Allergen.OTHER_NON_CODED_UUID);
+		
+		Allergy allergy1 = new Allergy();
+		allergy1.setAllergen(new Allergen(null, concept, "OTHER VALUE1"));
+		
+		Allergy allergy2 = new Allergy();
+		allergy2.setAllergen(new Allergen(null, concept, "OTHER VALUE2"));
+		
+		Allergies allergies = new Allergies();
+		allergies.add(allergy1);
+		allergies.add(allergy2);
+		
+		allergies.addAll(0, allergies);
 	}
 }
