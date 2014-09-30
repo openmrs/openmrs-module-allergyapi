@@ -65,7 +65,22 @@ public class PatientServiceImpl extends BaseOpenmrsService implements PatientSer
 		Allergies allergies = new Allergies();
 		List<Allergy> allergyList = dao.getAllergies(patient);
 		if (allergyList.size() > 0) {
-			allergies.addAll(allergyList);
+			try {
+				allergies.addAll(allergyList);
+			}
+			catch (APIException ex) {
+				//patient had duplicate allergen stored in database
+				//So add the non duplicates, one by one.
+				for (Allergy allergy : allergyList) {
+					try {
+						allergies.add(allergy);
+					}
+					catch (APIException e) {
+						//ignore this duplicate
+					}
+				}
+				log.warn("Found duplicate allergens stored in database", ex);
+			}
 		} else {
 			String status = dao.getAllergyStatus(patient);
 			if (Allergies.NO_KNOWN_ALLERGIES.equals(status)) {
