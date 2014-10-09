@@ -318,10 +318,34 @@ public class Allergies implements List<Allergy> {
 	 * @param allergies the given allergies collection
 	 */
 	private void throwExceptionIfHasAllergen(Allergy allergy, Collection<? extends Allergy> allergies) {
+		if (containsAllergen(allergy, allergies)) {
+			throw new APIException("Duplicate allergens not allowed");
+		}
+	}
+	
+	/**
+	 * Checks if a given allergy has the same allergen as any in the given allergies
+	 * 
+	 * @param allergy the allergy whose allergen to compare with
+	 * @param allergies the allergies whose allergens to compare with
+	 * @return true if the same allergen exists, else false
+	 */
+	public boolean containsAllergen(Allergy allergy, Collection<? extends Allergy> allergies) {
 		for (Allergy alg : allergies) {
 			if (alg.hasSameAllergen(allergy)) {
-				throw new APIException("Duplicate allergens not allowed");
+				return true;
 			}
 		}
+		return false;
+	}
+	
+	/**
+	 * Checks if we already have an allergen similar to that in the given allergy
+	 * 
+	 * @param allergy the allergy whose allergen to compare with
+	 * @return true if the same allergen exists, else false
+	 */
+	public boolean containsAllergen(Allergy allergy) {
+		return containsAllergen(allergy, allergies);
 	}
 }
