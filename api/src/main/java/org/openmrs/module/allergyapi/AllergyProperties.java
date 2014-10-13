@@ -71,4 +71,8 @@ public class AllergyProperties {
 	public Concept getOtherNonCodedConcept() {
 		return getConceptByGlobalProperty("allergy.concept.otherNonCoded");
 	}
+	
+	public Concept getUnknownConcept() {
+		return getConceptByGlobalProperty("allergy.concept.unknown");
+	}
 }

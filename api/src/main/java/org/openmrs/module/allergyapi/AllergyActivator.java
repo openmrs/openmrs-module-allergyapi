@@ -14,8 +14,9 @@
 package org.openmrs.module.allergyapi;
 
 
-import org.apache.commons.logging.Log; 
+import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.api.context.Context;
 import org.openmrs.module.ModuleActivator;
 
 /**
@@ -51,6 +52,14 @@ public class AllergyActivator implements ModuleActivator {
 	 */
 	public void started() {
 		log.info("Allergy API Module started");
+		
+		try {
+			AllergyProperties properties = Context.getRegisteredComponent("allergyProperties", AllergyProperties.class);
+			Allergen.OTHER_NON_CODED_UUID = properties.getOtherNonCodedConcept().getUuid();
+		}
+		catch (IllegalStateException ex) {
+			log.warn("Failed to set the other non coded concept uuid", ex);
+		}
 	}
 	
 	/**

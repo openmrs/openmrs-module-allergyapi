@@ -75,6 +75,12 @@
 		<description>UUID for the allergy other non coded concept</description>
 	</globalProperty>
 	
+	<globalProperty>
+		<property>allergy.concept.unknown</property>
+		<defaultValue>1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</defaultValue>
+		<description>UUID for the allergy unknown concept</description>
+	</globalProperty>
+	
 	<!-- Maps hibernate file's, if present -->
 	<mappingFiles>
 		Allergy.hbm.xml

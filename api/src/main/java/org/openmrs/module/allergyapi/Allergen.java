@@ -27,7 +27,7 @@ public class Allergen {
 	
 	private String nonCodedAllergen;
 	
-	public static final String OTHER_NON_CODED_UUID = "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+	public static String OTHER_NON_CODED_UUID = "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 	
 	/**
 	 * Default constructor
