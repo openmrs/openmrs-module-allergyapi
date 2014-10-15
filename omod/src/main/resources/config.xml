@@ -81,6 +81,11 @@
 		<description>UUID for the allergy unknown concept</description>
 	</globalProperty>
 	
+	<privilege>
+		<name>Task: Modify Allergies</name>
+		<description>Able to add, edit, delete allergies</description>
+	</privilege>
+	
 	<!-- Maps hibernate file's, if present -->
 	<mappingFiles>
 		Allergy.hbm.xml
