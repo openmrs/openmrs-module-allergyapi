@@ -151,10 +151,11 @@ public class AllergiesTest {
 	@Test(expected = APIException.class)
 	public void add_shouldNotAllowDuplicateCodedAllergen(){
 		Allergy allergy1 = new Allergy();
-		allergy1.setAllergen(new Allergen(null, new Concept(1), null));
+        Concept concept = new Concept();
+		allergy1.setAllergen(new Allergen(null, concept, null));
 		
 		Allergy allergy2 = new Allergy();
-		allergy2.setAllergen(new Allergen(null, new Concept(1), null));
+		allergy2.setAllergen(new Allergen(null, concept, null));
 		
 		allergies.add(allergy1);
 		allergies.add(allergy2);
@@ -215,10 +216,11 @@ public class AllergiesTest {
 	@Test(expected = APIException.class)
 	public void add2_shouldNotAllowDuplicateCodedAllergen(){
 		Allergy allergy1 = new Allergy();
-		allergy1.setAllergen(new Allergen(null, new Concept(1), null));
+        Concept concept = new Concept();
+		allergy1.setAllergen(new Allergen(null, concept, null));
 		
 		Allergy allergy2 = new Allergy();
-		allergy2.setAllergen(new Allergen(null, new Concept(1), null));
+		allergy2.setAllergen(new Allergen(null, concept, null));
 		
 		allergies.add(0, allergy1);
 		allergies.add(0, allergy2);
@@ -431,10 +433,11 @@ public class AllergiesTest {
 	@Test(expected = APIException.class)
 	public void addAll4_shouldNotAllowDuplicateCodedAllergen(){
 		Allergy allergy1 = new Allergy();
-		allergy1.setAllergen(new Allergen(null, new Concept(1), null));
+        Concept concept = new Concept();
+		allergy1.setAllergen(new Allergen(null, concept, null));
 		
 		Allergy allergy2 = new Allergy();
-		allergy2.setAllergen(new Allergen(null, new Concept(1), null));
+		allergy2.setAllergen(new Allergen(null, concept, null));
 		
 		List<Allergy> allergies = new ArrayList<Allergy>();
 		allergies.add(allergy1);
@@ -449,10 +452,11 @@ public class AllergiesTest {
 	@Test(expected = APIException.class)
 	public void addAll5_shouldNotAllowDuplicateCodedAllergen(){
 		Allergy allergy1 = new Allergy();
-		allergy1.setAllergen(new Allergen(null, new Concept(1), null));
+        Concept concept = new Concept();
+		allergy1.setAllergen(new Allergen(null, concept, null));
 		
 		Allergy allergy2 = new Allergy();
-		allergy2.setAllergen(new Allergen(null, new Concept(1), null));
+		allergy2.setAllergen(new Allergen(null, concept, null));
 		
 		List<Allergy> allergies = new ArrayList<Allergy>();
 		allergies.add(allergy1);

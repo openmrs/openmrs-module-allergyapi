@@ -52,7 +52,8 @@ public class AllergenTest {
 	
 	@Test
 	public void isSameAllergen_shouldReturnTrueForSameCodedAllergen() {
-		Assert.assertTrue(new Allergen(null, new Concept(1), null).isSameAllergen(new Allergen(null, new Concept(1), null)));
+        Concept c = new Concept();
+		Assert.assertTrue(new Allergen(null, c, null).isSameAllergen(new Allergen(null, c, null)));
 	}
 	
 	@Test

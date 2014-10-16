@@ -128,7 +128,7 @@ public class Allergen {
 			if (allergen.getCodedAllergen() == null) {
 				return false;
 			}
-			if (!codedAllergen.getConceptId().equals(allergen.getCodedAllergen().getConceptId())) {
+			if (!codedAllergen.equals(allergen.getCodedAllergen())) {
 				return false;
 			}
 		}
