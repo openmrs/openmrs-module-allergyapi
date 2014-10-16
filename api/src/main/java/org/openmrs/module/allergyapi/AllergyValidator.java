@@ -22,7 +22,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-@Component
+@Component("allergyValidator")
 @Handler(supports = { Allergy.class }, order = 50)
 public class AllergyValidator implements Validator {
 	
