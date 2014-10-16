@@ -14,13 +14,20 @@
 package org.openmrs.module.allergyapi;
 
 import org.apache.commons.lang.StringUtils;
-import org.openmrs.api.context.Context;
+import org.openmrs.annotation.Handler;
 import org.openmrs.module.allergyapi.api.PatientService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+@Component
+@Handler(supports = { Allergy.class }, order = 50)
 public class AllergyValidator implements Validator {
+	
+	@Autowired
+	private PatientService patientService;
 	
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -67,8 +74,7 @@ public class AllergyValidator implements Validator {
 			}
 			
 			if (allergy.getAllergyId() == null && allergy.getPatient() != null) {
-				PatientService ps = Context.getService(PatientService.class);
-				Allergies existingAllergies = ps.getAllergies(allergy.getPatient());
+				Allergies existingAllergies = patientService.getAllergies(allergy.getPatient());
 				if (existingAllergies.containsAllergen(allergy)) {
 					errors.rejectValue("allergen", "allergyapi.message.duplicateAllergen", new Object[] { allergy
 					        .getAllergen().toString() }, null);

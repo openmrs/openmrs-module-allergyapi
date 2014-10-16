@@ -17,33 +17,34 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.openmrs.Concept;
 import org.openmrs.ConceptName;
 import org.openmrs.Patient;
-import org.openmrs.api.context.Context;
 import org.openmrs.module.allergyapi.api.PatientService;
-import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.springframework.validation.BindException;
 import org.springframework.validation.Errors;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest(Context.class)
 public class AllergyValidatorTest {
 	
 	@Rule
 	public ExpectedException expectedException = ExpectedException.none();
 	
-	private AllergyValidator validator = new AllergyValidator();
+	@InjectMocks
+	private AllergyValidator validator;
+	
+	@Mock
+	private PatientService ps;
 	
 	private Concept createMockConcept(String uuid) {
 		Concept concept = mock(Concept.class);
@@ -134,10 +135,6 @@ public class AllergyValidatorTest {
 	 */
 	@Test
 	public void validate_shouldRejectADuplicateAllergen() throws Exception {
-		mockStatic(Context.class);
-		PatientService ps = mock(PatientService.class);
-		when(Context.getService(eq(PatientService.class))).thenReturn(ps);
-		
 		Allergies allergies = new Allergies();
 		Concept aspirin = createMockConcept(null);
 		Allergen allergen1 = new Allergen(AllergenType.DRUG, aspirin, null);
@@ -158,10 +155,6 @@ public class AllergyValidatorTest {
 	 */
 	@Test
 	public void validate_shouldRejectADuplicateNonCodedAllergen() throws Exception {
-		mockStatic(Context.class);
-		PatientService ps = mock(PatientService.class);
-		when(Context.getService(eq(PatientService.class))).thenReturn(ps);
-		
 		Allergies allergies = new Allergies();
 		Concept nonCodedConcept = createMockConcept(Allergen.OTHER_NON_CODED_UUID);
 		final String freeText = "some text";
@@ -183,10 +176,6 @@ public class AllergyValidatorTest {
 	 */
 	@Test
 	public void validate_shouldPassForAValidAllergy() throws Exception {
-		mockStatic(Context.class);
-		PatientService ps = mock(PatientService.class);
-		when(Context.getService(eq(PatientService.class))).thenReturn(ps);
-		
 		Allergies allergies = new Allergies();
 		Concept aspirin = new Concept();
 		Allergen allergen1 = new Allergen(AllergenType.DRUG, aspirin, null);
