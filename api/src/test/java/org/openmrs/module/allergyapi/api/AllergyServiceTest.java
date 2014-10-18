@@ -488,4 +488,15 @@ public class AllergyServiceTest extends BaseModuleContextSensitiveTest {
 		//the edited allergy should have been voided
 		Assert.assertFalse(allergies.contains(editedAllergy));
 	}
+
+    @Test
+    public void setAllergies_shouldSetTheNonCodedConceptForNonCodedAllergenIfNotSpecified() throws Exception {
+        Patient patient = Context.getPatientService().getPatient(2);
+        Allergen allergen = new Allergen(AllergenType.DRUG, null, "Some allergy name");
+        Allergy allergy = new Allergy(patient, allergen, null, null, null);
+        Allergies allergies = allergyService.getAllergies(patient);
+        allergies.add(allergy);
+        allergyService.setAllergies(patient, allergies);
+        Assert.assertEquals(Allergen.OTHER_NON_CODED_UUID, allergy.getAllergen().getCodedAllergen().getUuid());
+    }
 }

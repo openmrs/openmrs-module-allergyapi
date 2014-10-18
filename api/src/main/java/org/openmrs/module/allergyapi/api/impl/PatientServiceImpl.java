@@ -16,12 +16,15 @@ package org.openmrs.module.allergyapi.api.impl;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.Concept;
 import org.openmrs.Patient;
 import org.openmrs.api.APIException;
 import org.openmrs.api.context.Context;
 import org.openmrs.api.impl.BaseOpenmrsService;
+import org.openmrs.module.allergyapi.Allergen;
 import org.openmrs.module.allergyapi.Allergies;
 import org.openmrs.module.allergyapi.Allergy;
 import org.openmrs.module.allergyapi.api.PatientService;
@@ -117,6 +120,18 @@ public class PatientServiceImpl extends BaseOpenmrsService implements PatientSer
 			
 			//void the allergy that has been deleted
 			voidAllergy(originalAllergy);
+		}
+		
+		for (Allergy allergy : allergies) {
+			if (allergy.getAllergyId() == null && allergy.getAllergen().getCodedAllergen() == null
+			        && StringUtils.isNotBlank(allergy.getAllergen().getNonCodedAllergen())) {
+				
+				Concept otherNonCoded = Context.getConceptService().getConceptByUuid(Allergen.OTHER_NON_CODED_UUID);
+				if (otherNonCoded == null) {
+					throw new APIException("Can't find concept with uuid:" + Allergen.OTHER_NON_CODED_UUID);
+				}
+				allergy.getAllergen().setCodedAllergen(otherNonCoded);
+			}
 		}
 		
 		return dao.saveAllergies(patient, allergies);

@@ -58,6 +58,7 @@ public interface PatientService extends OpenmrsService {
 	 * @should void allergies with edited reaction non coded
 	 * @should void allergies with removed reactions
 	 * @should void allergies with added reactions
+     * @should set the non coded concept for non coded allergen if not specified
 	 */
 	Allergies setAllergies(Patient patient, Allergies allergies);
 }
