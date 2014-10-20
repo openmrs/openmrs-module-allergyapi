@@ -491,6 +491,7 @@ public class AllergyServiceTest extends BaseModuleContextSensitiveTest {
 
     @Test
     public void setAllergies_shouldSetTheNonCodedConceptForNonCodedAllergenIfNotSpecified() throws Exception {
+        executeDataSet("otherNonCodedConcept.xml");
         Patient patient = Context.getPatientService().getPatient(2);
         Allergen allergen = new Allergen(AllergenType.DRUG, null, "Some allergy name");
         Allergy allergy = new Allergy(patient, allergen, null, null, null);
