@@ -77,8 +77,9 @@ public class AllergyValidator implements Validator {
 			if (allergy.getAllergyId() == null && allergy.getPatient() != null) {
 				Allergies existingAllergies = patientService.getAllergies(allergy.getPatient());
 				if (existingAllergies.containsAllergen(allergy)) {
-					String name = Context.getMessageSourceService().getMessage("ui.i18n.Concept.name." + allergen.getCodedAllergen().getUuid());
-					if (StringUtils.isBlank(name)) {
+					String key = "ui.i18n.Concept.name." + allergen.getCodedAllergen().getUuid();
+					String name = Context.getMessageSourceService().getMessage(key);
+					if (key.equals(name)) {
 						name = allergen.toString();
 					}
 					errors.rejectValue("allergen", "allergyapi.message.duplicateAllergen", new Object[] { name }, null);
