@@ -15,6 +15,7 @@ package org.openmrs.module.allergyapi;
 
 import org.apache.commons.lang.StringUtils;
 import org.openmrs.annotation.Handler;
+import org.openmrs.api.context.Context;
 import org.openmrs.module.allergyapi.api.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -76,8 +77,11 @@ public class AllergyValidator implements Validator {
 			if (allergy.getAllergyId() == null && allergy.getPatient() != null) {
 				Allergies existingAllergies = patientService.getAllergies(allergy.getPatient());
 				if (existingAllergies.containsAllergen(allergy)) {
-					errors.rejectValue("allergen", "allergyapi.message.duplicateAllergen", new Object[] { allergy
-					        .getAllergen().toString() }, null);
+					String name = Context.getMessageSourceService().getMessage("ui.i18n.Concept.name." + allergen.getCodedAllergen().getUuid());
+					if (StringUtils.isBlank(name)) {
+						name = allergen.toString();
+					}
+					errors.rejectValue("allergen", "allergyapi.message.duplicateAllergen", new Object[] { name }, null);
 				}
 			}
 		}
