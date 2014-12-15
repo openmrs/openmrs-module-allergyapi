@@ -29,12 +29,17 @@ import org.mockito.Mock;
 import org.openmrs.Concept;
 import org.openmrs.ConceptName;
 import org.openmrs.Patient;
+import org.openmrs.api.context.Context;
+import org.openmrs.messagesource.MessageSourceService;
 import org.openmrs.module.allergyapi.api.PatientService;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.springframework.validation.BindException;
 import org.springframework.validation.Errors;
 
 @RunWith(PowerMockRunner.class)
+@PrepareForTest(Context.class)
 public class AllergyValidatorTest {
 	
 	@Rule
@@ -135,6 +140,10 @@ public class AllergyValidatorTest {
 	 */
 	@Test
 	public void validate_shouldRejectADuplicateAllergen() throws Exception {
+		PowerMockito.mockStatic(Context.class);
+		MessageSourceService ms = mock(MessageSourceService.class);
+		when(Context.getMessageSourceService()).thenReturn(ms);
+		
 		Allergies allergies = new Allergies();
 		Concept aspirin = createMockConcept(null);
 		Allergen allergen1 = new Allergen(AllergenType.DRUG, aspirin, null);
@@ -155,6 +164,10 @@ public class AllergyValidatorTest {
 	 */
 	@Test
 	public void validate_shouldRejectADuplicateNonCodedAllergen() throws Exception {
+		PowerMockito.mockStatic(Context.class);
+		MessageSourceService ms = mock(MessageSourceService.class);
+		when(Context.getMessageSourceService()).thenReturn(ms);
+		
 		Allergies allergies = new Allergies();
 		Concept nonCodedConcept = createMockConcept(Allergen.OTHER_NON_CODED_UUID);
 		final String freeText = "some text";
