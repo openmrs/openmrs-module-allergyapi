@@ -111,4 +111,10 @@
             </column>
         </addColumn>
     </changeSet>
+    
+    <changeSet id="TRUNK-4548-MigrateAllergiesChangeSet" author="dkayiwa">
+		<comment>Custom changeset to migrate allergies from old to new tables</comment>
+		<customChange class="org.openmrs.module.allergyapi.api.db.MigrateAllergiesChangeSet"></customChange>
+	</changeSet>
+	
 </databaseChangeLog>
