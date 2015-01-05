@@ -112,7 +112,17 @@
         </addColumn>
     </changeSet>
     
-    <changeSet id="TRUNK-4548-MigrateAllergiesChangeSet" author="dkayiwa">
+    <changeSet id="TRUNK-4548-MigrateAllergiesChangeSet1" author="dkayiwa">
+    	<preConditions onFail="MARK_RAN">
+    		<not>
+				<sqlCheck expectedResult="0">
+					select count(*) from active_list al 
+					inner join active_list_allergy ala on al.active_list_id=ala.active_list_id
+					where voided = 0 and active_list_type_id = (select active_list_type_id 
+					from active_list_type where name = 'Allergy')
+				</sqlCheck>
+			</not>
+		</preConditions>
 		<comment>Custom changeset to migrate allergies from old to new tables</comment>
 		<customChange class="org.openmrs.module.allergyapi.api.db.MigrateAllergiesChangeSet"></customChange>
 	</changeSet>
