@@ -73,7 +73,7 @@ public class MigrateAllergiesChangeSet implements CustomTaskChange {
 			if (!rs.next()) {
 				throw new CustomChangeException("Failed to find row with name 'Allergy' in the active_list_type");
 			}
-			int allertTypeId = rs.getInt(1);
+			int allergyTypeId = rs.getInt(1);
 			
 			sql = "insert into allergy (patient_id, coded_allergen, severity_concept_id, creator, date_created, uuid, comment, allergen_type) " +
 					"values(?,?,?,?,?,?,?,?)";
@@ -88,7 +88,7 @@ public class MigrateAllergiesChangeSet implements CustomTaskChange {
 			
 			sql = "select person_id, concept_id, comments, creator, date_created, uuid, reaction_concept_id, severity, allergy_type "
 			        + "from active_list al inner join active_list_allergy ala on al.active_list_id=ala.active_list_id "
-			        + "where voided = 0 and active_list_type_id = " + allertTypeId;
+			        + "where voided = 0 and active_list_type_id = " + allergyTypeId;
 			
 			selectStatement = connection.createStatement();
 			rs = selectStatement.executeQuery(sql);
