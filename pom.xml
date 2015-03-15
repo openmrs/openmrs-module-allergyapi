@@ -35,6 +35,7 @@
 	
 	<properties>
 		<openMRSVersion>1.9.7</openMRSVersion>
+        <webservicesRestVersion>2.8</webservicesRestVersion> <!-- arbitrary recent-but-not-too-recent version -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -98,7 +99,21 @@
 						
 			<!-- End OpenMRS core -->
 
-		</dependencies>
+            <dependency>
+                <groupId>org.openmrs.module</groupId>
+                <artifactId>webservices.rest-omod-common</artifactId>
+                <version>${webservicesRestVersion}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.openmrs.module</groupId>
+                <artifactId>webservices.rest-omod-1.9</artifactId>
+                <version>${webservicesRestVersion}</version>
+                <scope>provided</scope>
+            </dependency>
+
+
+        </dependencies>
 	</dependencyManagement>
 
 	<build>
