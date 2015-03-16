@@ -76,7 +76,7 @@ public abstract class BaseResourceTest extends BaseModuleWebContextSensitiveTest
     }
 
     protected Matcher<Map<String, ?>> allergyMatcher(final Concept allergen, final Concept severity, final Concept... reactions) {
-        Collection<Matcher<?>> reactionMatchers = new ArrayList<Matcher<?>>();
+        Collection<Matcher<? super Object>> reactionMatchers = new ArrayList<Matcher<? super Object>>();
         for (Concept reaction : reactions) {
             reactionMatchers.add(hasProperty("reaction.uuid", is(reaction.getUuid())));
         }
