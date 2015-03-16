@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMa
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -75,7 +76,7 @@ public abstract class BaseResourceTest extends BaseModuleWebContextSensitiveTest
     }
 
     protected Matcher<Map<String, ?>> allergyMatcher(final Concept allergen, final Concept severity, final Concept... reactions) {
-        List<Matcher<?>> reactionMatchers = new ArrayList<Matcher<?>>();
+        Collection<Matcher<?>> reactionMatchers = new ArrayList<Matcher<?>>();
         for (Concept reaction : reactions) {
             reactionMatchers.add(hasProperty("reaction.uuid", is(reaction.getUuid())));
         }
