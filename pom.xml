@@ -4,7 +4,7 @@
 
 	<groupId>org.openmrs.module</groupId>
 	<artifactId>allergyapi</artifactId>
-	<version>1.3-SNAPSHOT</version>
+	<version>1.3</version>
 	<packaging>pom</packaging>
 	<name>Allergy API Module</name>
 	<description>Allergy API</description>
@@ -25,7 +25,7 @@
 		<connection>scm:git:git@github.com:openmrs/openmrs-module-allergyapi.git</connection>
 		<developerConnection>scm:git:git@github.com:openmrs/openmrs-module-allergyapi.git</developerConnection>
 		<url>https://github.com/openmrs/openmrs-module-allergyapi.git</url>
-	  <tag>HEAD</tag>
+	  <tag>1.3</tag>
   </scm>
 
 	<modules>
