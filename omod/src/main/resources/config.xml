@@ -111,6 +111,18 @@
 		<lang>es</lang>
 		<file>messages_es.properties</file>
 	</messages>
+	<messages>
+		<lang>pt</lang>
+		<file>messages_pt.properties</file>
+	</messages>
+	<messages>
+		<lang>de</lang>
+		<file>messages_de.properties</file>
+	</messages>
+	<messages>
+		<lang>ht</lang>
+		<file>messages_ht.properties</file>
+	</messages>
 	<!-- /Internationalization -->
 
 </module>
