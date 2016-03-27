@@ -76,6 +76,16 @@ public class Allergen {
 			nonCodedAllergen = null;
 		}
     }
+    
+	/**
+	 * Returns other non coded concept uuid constant.
+	 * 
+	 * @return other non coded concept uuid constant
+	 * @since 1.5
+	 */
+	public static String getOtherNonCodedConceptUuid() {
+		return OTHER_NON_CODED_UUID;
+	}
 	
     /**
      * @return the nonCodedAllergen
