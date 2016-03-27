@@ -63,6 +63,12 @@
 				<version>${openMRSVersion}</version>
 				<type>jar</type>
 				<scope>provided</scope>
+            	<exclusions>
+	                <exclusion>
+	                    <groupId>javassist</groupId>
+	                    <artifactId>javassist</artifactId>
+	                </exclusion>
+	            </exclusions>
 			</dependency>
 
 			<dependency>
@@ -79,6 +85,12 @@
 				<version>${openMRSVersion}</version>
 				<type>test-jar</type>
 				<scope>test</scope>
+            	<exclusions>
+	                <exclusion>
+	                    <groupId>javassist</groupId>
+	                    <artifactId>javassist</artifactId>
+	                </exclusion>
+	            </exclusions>
 			</dependency>
 			
 			<dependency>
@@ -111,6 +123,14 @@
                 <version>${webservicesRestVersion}</version>
                 <scope>provided</scope>
             </dependency>
+
+        	
+        	<dependency>
+		        <groupId>org.javassist</groupId>
+		        <artifactId>javassist</artifactId>
+		        <version>3.18.2-GA</version>
+		        <scope>test</scope>
+		    </dependency>
 
 
         </dependencies>
