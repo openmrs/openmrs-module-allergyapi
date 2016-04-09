@@ -13,6 +13,7 @@
  */
 package org.openmrs.module.allergyapi;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openmrs.Concept;
 
@@ -120,6 +121,10 @@ public class Allergen {
 	    }
 	    return codedAllergen.getName().getName();
     }
+	
+	public String getEscapeJavascript(){
+		return StringEscapeUtils.escapeJavaScript(toString());
+	}
 	
 	/**
 	 * Checks if this allergen is the same as the given one
