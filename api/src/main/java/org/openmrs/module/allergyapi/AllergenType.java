@@ -14,5 +14,5 @@
 package org.openmrs.module.allergyapi;
 
 public enum AllergenType {
-	DRUG, FOOD, ENVIRONMENTAL
+	DRUG, FOOD, ENVIRONMENT
 }
