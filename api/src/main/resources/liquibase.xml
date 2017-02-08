@@ -126,5 +126,14 @@
 		<comment>Custom changeset to migrate allergies from old to new tables</comment>
 		<customChange class="org.openmrs.module.allergyapi.api.db.MigrateAllergiesChangeSet"></customChange>
 	</changeSet>
-	
+
+    <changeSet id="RA-534-Migrate ENVIRONMENTAL to ENVIRONMENT" author="mgoodrich">
+        <update tableName="allergy">
+            <column name="allergen_type" value="ENVIRONMENT"/>
+            <where>allergen_type = 'ENVIRONMENTAL'</where>
+        </update>
+    </changeSet>
+
+
+
 </databaseChangeLog>
