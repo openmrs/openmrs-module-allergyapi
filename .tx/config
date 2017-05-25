@@ -9,4 +9,14 @@ trans.ht = api/src/main/resources/messages_ht.properties
 trans.pt = api/src/main/resources/messages_pt.properties
 trans.de = api/src/main/resources/messages_de.properties
 trans.es = api/src/main/resources/messages_es.properties
+trans.id_ID = api/src/main/resources/messages_id_ID.properties
+trans.en_US = api/src/main/resources/messages_en_US.properties
+trans.pl = api/src/main/resources/messages_pl.properties
+trans.ta = api/src/main/resources/messages_ta.properties
+trans.pt_BR = api/src/main/resources/messages_pt_BR.properties
+trans.hr = api/src/main/resources/messages_hr.properties
+trans.hi = api/src/main/resources/messages_hi.properties
+trans.tr_TR = api/src/main/resources/messages_tr_TR.properties
+trans.zh_CN = api/src/main/resources/messages_zh_CN.properties
+trans.ur = api/src/main/resources/messages_ur.properties
 

@@ -123,6 +123,50 @@
 		<lang>ht</lang>
 		<file>messages_ht.properties</file>
 	</messages>
+	<messages>
+		<lang>id_ID</lang>
+		<file>messages_id_ID.properties</file>
+	</messages>
+	<messages>
+		<lang>en_US</lang>
+		<file>messages_en_US.properties</file>
+	</messages>
+	<messages>
+		<lang>ps</lang>
+		<file>messages_ps.properties</file>
+	</messages>
+	<messages>
+		<lang>pl</lang>
+		<file>messages_pl.properties</file>
+	</messages>
+	<messages>
+		<lang>ta</lang>
+		<file>messages_ta.properties</file>
+	</messages>
+	<messages>
+		<lang>pt_BR</lang>
+		<file>messages_pt_BR.properties</file>
+	</messages>
+	<messages>
+		<lang>hr</lang>
+		<file>messages_hr.properties</file>
+	</messages>
+	<messages>
+		<lang>hi</lang>
+		<file>messages_hi.properties</file>
+	</messages>
+	<messages>
+		<lang>tr_TR</lang>
+		<file>messages_tr_TR.properties</file>
+	</messages>
+	<messages>
+		<lang>zh_CN</lang>
+		<file>messages_zh_CN.properties</file>
+	</messages>
+	<messages>
+		<lang>ur</lang>
+		<file>messages_ur.properties</file>
+	</messages>
 	<!-- /Internationalization -->
 
 </module>
