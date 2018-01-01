@@ -20,77 +20,77 @@
             org.openmrs.module.webservices.rest
         </require_module>
     </require_modules>
-	
+
 	<!-- Module Activator -->
 	<activator>${project.parent.groupId}.${project.parent.artifactId}.AllergyActivator</activator>
-	
-	
+
+
 	<!-- Adds link to admin page -->
 	<extension>
 		<point>org.openmrs.admin.list</point>
 		<class>${project.parent.groupId}.${project.parent.artifactId}.extension.html.AdminList</class>
 	</extension>
-	
+
 	<!-- Required Global Properties -->
 	<globalProperty>
 		<property>allergy.concept.severity.mild</property>
 		<defaultValue>1498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</defaultValue>
 		<description>UUID for the MILD severity concept</description>
 	</globalProperty>
-	
+
 	<globalProperty>
 		<property>allergy.concept.severity.moderate</property>
 		<defaultValue>1499AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</defaultValue>
 		<description>UUID for the MODERATE severity concept</description>
 	</globalProperty>
-	
+
 	<globalProperty>
 		<property>allergy.concept.severity.severe</property>
 		<defaultValue>1500AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</defaultValue>
 		<description>UUID for the SEVERE severity concept</description>
 	</globalProperty>
-	
+
 	<globalProperty>
 		<property>allergy.concept.allergen.food</property>
 		<defaultValue>162553AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</defaultValue>
 		<description>UUID for the food allergens concept</description>
 	</globalProperty>
-	
+
 	<globalProperty>
 		<property>allergy.concept.allergen.drug</property>
 		<defaultValue>162552AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</defaultValue>
 		<description>UUID for the drug allergens concept</description>
 	</globalProperty>
-	
+
 	<globalProperty>
 		<property>allergy.concept.allergen.environment</property>
 		<defaultValue>162554AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</defaultValue>
 		<description>UUID for the environment allergens concept</description>
 	</globalProperty>
-	
+
 	<globalProperty>
 		<property>allergy.concept.reactions</property>
 		<defaultValue>162555AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</defaultValue>
 		<description>UUID for the allergy reactions concept</description>
 	</globalProperty>
-	
+
 	<globalProperty>
 		<property>allergy.concept.otherNonCoded</property>
 		<defaultValue>5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</defaultValue>
 		<description>UUID for the allergy other non coded concept</description>
 	</globalProperty>
-	
+
 	<globalProperty>
 		<property>allergy.concept.unknown</property>
 		<defaultValue>1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</defaultValue>
 		<description>UUID for the allergy unknown concept</description>
 	</globalProperty>
-	
+
 	<privilege>
 		<name>Task: Modify Allergies</name>
 		<description>Able to add, edit, delete allergies</description>
 	</privilege>
-	
+
 	<!-- Maps hibernate file's, if present -->
 	<mappingFiles>
 		Allergy.hbm.xml
@@ -100,30 +100,89 @@
 	<!-- Internationalization -->
 	<!-- All message codes should start with ${project.parent.artifactId}. -->
 	<messages>
-		<lang>en</lang>
-		<file>messages.properties</file>
+			<lang>en</lang>
+			<file>messages.properties</file>
 	</messages>
 	<messages>
-		<lang>fr</lang>
-		<file>messages_fr.properties</file>
+			<lang>fr</lang>
+			<file>messages_fr.properties</file>
 	</messages>
 	<messages>
-		<lang>es</lang>
-		<file>messages_es.properties</file>
+			<lang>es</lang>
+			<file>messages_es.properties</file>
 	</messages>
 	<messages>
-		<lang>pt</lang>
-		<file>messages_pt.properties</file>
+			<lang>ht</lang>
+			<file>messages_ht.properties</file>
 	</messages>
 	<messages>
-		<lang>de</lang>
-		<file>messages_de.properties</file>
+			<lang>pt</lang>
+			<file>messages_pt.properties</file>
 	</messages>
 	<messages>
-		<lang>ht</lang>
-		<file>messages_ht.properties</file>
+			<lang>de</lang>
+			<file>messages_de.properties</file>
+	</messages>
+	<messages>
+			<lang>de</lang>
+			<file>messages_de.properties</file>
+	</messages>
+	<messages>
+			<lang>fa</lang>
+			<file>messages_fa.properties</file>
+	</messages>
+	<messages>
+			<lang>si</lang>
+			<file>messages_si.properties</file>
+	</messages>
+	<messages>
+			<lang>hi</lang>
+			<file>messages_hi.properties</file>
+	</messages>
+	<messages>
+			<lang>ar</lang>
+			<file>messages_ar.properties</file>
+	</messages>
+	<messages>
+			<lang>pl</lang>
+			<file>messages_pl.properties</file>
+	</messages>
+	<messages>
+			<lang>it</lang>
+			<file>messages_it.properties</file>
+	</messages>
+	<messages>
+			<lang>el</lang>
+			<file>messages_el.properties</file>
+	</messages>
+	<messages>
+			<lang>ru</lang>
+			<file>messages_ru.properties</file>
+	</messages>
+	<messages>
+			<lang>lt</lang>
+			<file>messages_lt.properties</file>
+	</messages>
+	<messages>
+			<lang>hy</lang>
+			<file>messages_hy.properties</file>
+	</messages>
+	<messages>
+			<lang>te</lang>
+			<file>messages_te.properties</file>
+	</messages>
+	<messages>
+			<lang>sw</lang>
+			<file>messages_sw.properties</file>
+	</messages>
+	<messages>
+			<lang>ku</lang>
+			<file>messages_ku.properties</file>
+	</messages>
+	<messages>
+			<lang>id_ID</lang>
+			<file>messages_id_ID.properties</file>
 	</messages>
 	<!-- /Internationalization -->
 
 </module>
-
