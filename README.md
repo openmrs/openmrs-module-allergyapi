@@ -8,13 +8,18 @@ Developer Documentation
 ---
 Getting Started
 ---
+
+
 Basic Folder Structure
 ---
 
-Jira Links
+Jira Links To Issues
 ---
+* https://issues.openmrs.org/browse/RA-357
+* https://issues.openmrs.org/browse/TRUNK-4747
+* https://issues.openmrs.org/browse/RA-371
+* https://issues.openmrs.org/browse/RA-462 *Open Issue*
 
-```
 Licenses
 ---
 This project is licensed under the Mozilla Public License 2.0 - see the LICENSE file for details
