@@ -7,17 +7,26 @@ The Allergy API is a Java-based API that handles patient data in OpenMRS related
 behind this API are to easily add allergy objects to patients, to change certain aspects of allergy objects for a patient such as severity and allergens in an organized fashion
 (through variables such as allergy ID), and to compare allergies with each other to see if they have similar properties or characteristics.
 
+
+## Download
+
+To install the Allergy API module into your system, visit [the module download page](https://modules.openmrs.org/#/show/153/webservices-rest) (The Allergy API has been moved into the Core API).
+
 ## Developer Documentation
 
 ### Getting Started
+* The actual API is meant to be used with the allergyUI module, as this API is meant to act like a framework. More about the allergyUI module can be found [here](https://github.com/openmrs/openmrs-module-allergyui)
 
 
-### Jira Links To Issues
+### Jira Links
 ---
-* https://issues.openmrs.org/browse/RA-357
-* https://issues.openmrs.org/browse/TRUNK-4747
-* https://issues.openmrs.org/browse/RA-371
-* https://issues.openmrs.org/browse/RA-462 *Open Issue*
+
+| Page | Description |
+| ---- | ----------- |
+| [RA-357](https://issues.openmrs.org/browse/RA-357) | About the creation of the Allergy API|
+|[TRUNK-4747](https://issues.openmrs.org/browse/TRUNK-4747)  | Moving of Allergy API to core platform|
+|[RA-371](https://issues.openmrs.org/browse/RA-371)  | Allergy API in reference application distribution |
+|[RA-462](https://issues.openmrs.org/browse/RA-462) *Open Issue*| Allergies being added to REST resources|
 
 ### Wiki Pages
 ---
@@ -31,10 +40,12 @@ behind this API are to easily add allergy objects to patients, to change certain
 
 Contribute
 ---
-To contribute to APIs like this and more, sign up for an OpenMRS ID in the following link: https://openmrs.org/
+To contribute to APIs like this and more, sign up for an OpenMRS ID in the following link: 
+
+https://openmrs.org/
 
 
-Licenses
+License
 ---
 This project is licensed under the Mozilla Public License 2.0 - see the LICENSE file for details
 
