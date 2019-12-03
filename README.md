@@ -10,15 +10,17 @@ behind this API are to easily add allergy objects to patients, to change certain
 
 ## Download
 
-To install the Allergy API module into your system, visit [the module download page](https://modules.openmrs.org/#/show/153/webservices-rest) (The Allergy API has been moved into the Core API).
+To install the Allergy API module into your system, visit [the module download page](https://modules.openmrs.org/#/show/153/webservices-rest) (The Allergy API has been moved into the core platform).
+
+Refer to [this](https://wiki.openmrs.org/display/docs/Step+by+Step+Installation+for+Developers) for more help.
 
 ## Developer Documentation
 
 ### Getting Started
 * The actual API is meant to be used with the allergyUI module, as this API is meant to act like a framework. More about the allergyUI module can be found [here](https://github.com/openmrs/openmrs-module-allergyui)
+* API References can be found in the actual src files in the repository as javadoc comments specifically what each method does.
 
-
-### Jira Links
+### Jira Issues
 ---
 
 | Page | Description |
