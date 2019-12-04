@@ -55,15 +55,14 @@ the tests. :maple_leaf:
 | [2.5 Issue Tracking](https://wiki.openmrs.org/display/RES/Reference+Application+2.5+Release+Issue+Tracking) | Description of issues for various modules in OpenMRS |
 
 
-Contribute
----
+## Contribute
 OpenMRS is a highly active and engaged open-source community who would love to have more help!
 To contribute to APIs like this and more, sign up for an OpenMRS ID in the following link: 
 
 https://openmrs.org/
 
 
-License
+## License
 ---
 This project is licensed under the [Mozilla Public License 2.0](mozilla.org/en-US/MPL/2.0/) - see the LICENSE file for details
 
