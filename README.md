@@ -10,7 +10,7 @@ behind this API are to easily add allergy objects to patients, to change certain
 
 ## Download
 
-To install the Allergy API module into your system, visit [the module download page](https://modules.openmrs.org/#/show/153/webservices-rest) (The Allergy API has been moved into the core platform).
+To install the Allergy API module into your system, visit [the module download page](https://addons.openmrs.org/show/org.openmrs.module.allergies-api) (The Allergy API is deprecated).
 
 Refer to [this](https://wiki.openmrs.org/display/docs/Step+by+Step+Installation+for+Developers) for more help.
 
