@@ -59,6 +59,7 @@ in the OpenMRS platform under patient as a subresource.
 
 Contribute
 ---
+OpenMRS is a highly active and engaged open-source community who would love to have more help!
 To contribute to APIs like this and more, sign up for an OpenMRS ID in the following link: 
 
 https://openmrs.org/
@@ -66,7 +67,7 @@ https://openmrs.org/
 
 License
 ---
-This project is licensed under the Mozilla Public License 2.0 - see the LICENSE file for details
+This project is licensed under the [Mozilla Public License 2.0](mozilla.org/en-US/MPL/2.0/) - see the LICENSE file for details
 
 
 
