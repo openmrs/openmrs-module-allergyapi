@@ -14,16 +14,33 @@ To install the Allergy API module into your system, visit [the module download p
 
 Refer to [this](https://wiki.openmrs.org/display/docs/Step+by+Step+Installation+for+Developers) for more help.
 
+## Build
+To build the module from source, clone this repo:
+
+```
+https://github.com/openmrs/openmrs-module-allergyapi.git
+```
+
+Then navigate into the `openmrs-module-allergyapi` directory and compile the module using Maven:
+
+```
+cd openmrs-module-allergyapi && mvn clean install
+```
+
+:maple_leaf: Maven and Java 8 need to be installed to successfully build and run 
+the tests. :maple_leaf:
+
 ## Developer Documentation
 
 ### Getting Started
-* The actual API is meant to be used with the allergyUI module, as this API is meant to act like a framework. More about the allergyUI module can be found [here](https://github.com/openmrs/openmrs-module-allergyui)
+* The actual API is meant to be used with the allergyUI module, as this API is meant to act like a framework. This API is simply a module of OpenMRS's main application, and thus is not meant to be used in isolation aside from testing purposes (like bugs, etc.). More about the allergyUI module can be found [here](https://github.com/openmrs/openmrs-module-allergyui)
 * API References can be found in the actual src files in the repository as javadoc comments specifically what each method does.
+* On the Allergies Reference wiki page and OpenMRS Talk, many developers have said that this API has been implemented
+in the OpenMRS platform under patient as a subresource.
 
-### Jira Issues
+### JIRA Issues
 ---
-
-| Page | Description |
+| Issue | Description |
 | ---- | ----------- |
 | [RA-357](https://issues.openmrs.org/browse/RA-357) | About the creation of the Allergy API|
 |[TRUNK-4747](https://issues.openmrs.org/browse/TRUNK-4747)  | Moving of Allergy API to core platform|
