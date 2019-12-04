@@ -38,7 +38,7 @@ the tests. :maple_leaf:
 * On the Allergies Reference wiki page and OpenMRS Talk, many developers have said that this API has been implemented
 in the OpenMRS platform under patient as a subresource.
 
-### JIRA Issues
+## JIRA Issues
 ---
 | Issue | Description |
 | ---- | ----------- |
@@ -47,7 +47,7 @@ in the OpenMRS platform under patient as a subresource.
 |[RA-371](https://issues.openmrs.org/browse/RA-371)  | Allergy API in reference application distribution |
 |[RA-462](https://issues.openmrs.org/browse/RA-462) *Open Issue*| Allergies being added to REST resources|
 
-### Wiki Pages
+## Wiki Pages
 ---
 | Page | Description |
 | ---- | ----------- |
