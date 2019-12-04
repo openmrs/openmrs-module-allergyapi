@@ -35,8 +35,6 @@ the tests. :maple_leaf:
 ### Getting Started
 * The actual API is meant to be used with the allergyUI module, as this API is meant to act like a framework. This API is simply a module of OpenMRS's main application, and thus is not meant to be used in isolation aside from testing purposes (like bugs, etc.). More about the allergyUI module can be found [here](https://github.com/openmrs/openmrs-module-allergyui)
 * API References can be found in the actual src files in the repository as javadoc comments specifically what each method does.
-* On the Allergies Reference wiki page and OpenMRS Talk, many developers have said that this API has been implemented
-in the OpenMRS platform under patient as a subresource.
 
 ## JIRA Issues
 ---
