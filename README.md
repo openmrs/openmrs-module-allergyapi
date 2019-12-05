@@ -8,12 +8,6 @@ behind this API are to easily add allergy objects to patients, to change certain
 (through variables such as allergy ID), and to compare allergies with each other to see if they have similar properties or characteristics.
 
 
-## Download
-
-To install the Allergy API module into your system, visit [the module download page](https://addons.openmrs.org/show/org.openmrs.module.allergies-api) (The Allergy API is deprecated).
-
-Refer to [this](https://wiki.openmrs.org/display/docs/Step+by+Step+Installation+for+Developers) for more help.
-
 ## Build
 To build the module from source, clone this repo:
 
