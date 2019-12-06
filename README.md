@@ -23,14 +23,6 @@ cd openmrs-module-allergyapi && mvn clean install
 :maple_leaf: Maven and Java 8 need to be installed to successfully build and run 
 the tests. :maple_leaf:
 
-## JIRA Issues
----
-| Issue | Description |
-| ---- | ----------- |
-| [RA-357](https://issues.openmrs.org/browse/RA-357) | About the creation of the Allergy API|
-|[TRUNK-4747](https://issues.openmrs.org/browse/TRUNK-4747)  | Moving of Allergy API to core platform|
-|[RA-371](https://issues.openmrs.org/browse/RA-371)  | Allergy API in reference application distribution |
-|[RA-462](https://issues.openmrs.org/browse/RA-462) *Open Issue*| Allergies being added to REST resources|
 
 ## Wiki Pages
 ---
